@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import books from './resources/pics/book-bindings-bookcase-books-694740.jpg';
 import './App.css';
+import Navegacao from './components/Navbar'
+import Intro from './components/Intro'
+import Search from './components/Search'
+
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
+
+  componentDidUpdate() {
+    fetch("http://openlibrary.org/search.json?q=orwell")
+    .then(res => res.json())
+    .then((result) => {
+      console.log(result);
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Navegacao />
+        <img 
+          src={books} 
+          className="imgStyle"
+          alt="A pile of books" />
+        <Intro className="" />
+        <h1 className="hStyle">Experimente</h1>
+        <Search />
       </div>
     );
   }
