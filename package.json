@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "boox",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +9,15 @@
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "reactstrap": "^6.5.0"
+=======
+  "name": "bookeeper",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+>>>>>>> 9957849c1eb531e597c8c802a6743b7f252ee903
   },
   "scripts": {
     "start": "react-scripts start",
