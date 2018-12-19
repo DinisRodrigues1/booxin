@@ -5,7 +5,7 @@ import Navegacao from './components/Navbar'
 import Intro from './components/Intro'
 import Search from './components/Search'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
 
