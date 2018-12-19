@@ -8,8 +8,6 @@ import Footer from './components/Footer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-//const axios = require('axios')
-
 class App extends Component {
 
   render() {
