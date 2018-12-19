@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 import './Search.css'
 
@@ -51,7 +52,9 @@ class Search extends Component {
                             onChange={(e)=>this.handleChange(e)} />
                     </FormGroup>
                     <FormGroup>
-                        <Button onClick={()=>this.handleClick()}>Search</Button>
+                        <Link to='/results'>
+                            <Button onClick={()=>this.handleClick()}>Search</Button>
+                        </Link>
                     </FormGroup>
                 </Form>
             </React.Fragment>
