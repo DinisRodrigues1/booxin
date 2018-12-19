@@ -6,6 +6,7 @@ import Results from './components/Results'
 import Navegacao from './components/Navbar'
 import Intro from './components/Intro'
 import Search from './components/Search'
+import Footer from './components/Footer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
