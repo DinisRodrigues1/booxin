@@ -1,0 +1,9 @@
+.footer {
+    background-color: #212529
+}
+.col {
+    padding-top: 5vh;
+    color: white;
+    max-width: 100%;
+    text-align: left
+}

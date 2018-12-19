@@ -4,10 +4,11 @@ import './App.css';
 import Navegacao from './components/Navbar'
 import Intro from './components/Intro'
 import Search from './components/Search'
+import Footer from './components/Footer'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const axios = require('axios')
+//const axios = require('axios')
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
         <Intro className="" />
         <h1 className="hStyle">Experimente</h1>
         <Search />
+        <Footer />
       </div>
     );
   }
