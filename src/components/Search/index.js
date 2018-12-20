@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
-
+import Context from '../../SearchContext'
 import './Search.scss'
 
 const axios = require('axios')
@@ -30,6 +30,7 @@ class Search extends Component {
         .then(function (response) {
             // handle success
             console.log(response);
+            
         })
         .catch(function (error) {
             // handle error
