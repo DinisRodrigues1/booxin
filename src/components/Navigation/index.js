@@ -14,7 +14,7 @@ import {
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
     
 
-class Navegacao extends React.Component {
+class Navigation extends React.Component {
         constructor(props) {
           super(props);
       
@@ -67,4 +67,4 @@ class Navegacao extends React.Component {
         }
       }
 
-export default Navegacao
+export default Navigation

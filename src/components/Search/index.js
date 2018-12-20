@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
 
-import './Search.css'
+import './Search.scss'
 
 const axios = require('axios')
 

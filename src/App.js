@@ -1,37 +1,26 @@
 import React, { Component } from 'react'
-import books from './resources/pics/book-bindings-bookcase-books-694740.jpg'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
-import Results from './components/Results'
-import Navegacao from './components/Navbar'
-import Intro from './components/Intro'
-import Search from './components/Search'
+import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import Home from './components/Home'
+import Results from './components/Results'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
   render() {
     return (
-    
       <Router>
         <Switch>
         <div className="App">
-          <Navegacao />
-          <img 
-            src={books} 
-            className="imgStyle"
-            alt="A pile of books" />
-          <Intro className="" />
-          <h1 className="hStyle">Experimente</h1>
-          <Search />
+          <Navigation />
+          <Route exact path='/' component={Home}/>
           <Route path='/results' component={Results}/>
           <Footer/>
         </div>
         </Switch>
       </Router>
-      
-      
     );
   }
 }

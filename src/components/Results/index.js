@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import './Results.css'
-import Navbar from '../Navbar'
+import './Results.scss'
 
-const Results = () => {
-    return(
-        <React.Fragment>
-            <Navbar />
-            <h1>Works!</h1>
-        </React.Fragment>
-    )
+class Results extends Component {
+    render(){
+        return(
+            <React.Fragment>
+                <h1>Works!</h1>
+            </React.Fragment>
+        )
+    }
 }
 
 export default Results
