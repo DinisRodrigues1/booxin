@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Results.css'
 import Navbar from '../Navbar'
 
 const Results = () => {
     return(
-        <React.fragment>
+        <React.Fragment>
             <Navbar />
-        </React.fragment>
+            <h1>Works!</h1>
+        </React.Fragment>
     )
 }
 
