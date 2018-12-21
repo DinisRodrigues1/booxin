@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './Search.scss'
+import SearchProvider, { Provider } from '../../searchContext'
 
 const axios = require('axios')
 
@@ -24,7 +25,6 @@ class Search extends Component {
     }
 
     handleClick = () => {
-        //console.log(this.state.searchValue)
         axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue)
         .then(function (response) {
             console.log(response)
@@ -34,7 +34,7 @@ class Search extends Component {
             console.log(error)
         })
         .then(function () {
-            // always executed
+            console.log('then O CARALHO')
         });
     }
 
