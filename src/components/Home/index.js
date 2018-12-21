@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './Home.scss'
 import { Container, Row, Col } from 'reactstrap'
 import Search from '../Search'
@@ -7,7 +7,7 @@ import books from '../../resources/pics/book-bindings-bookcase-books-694740.jpg'
 class Home extends Component{
     render(){
         return(
-            <React.Fragment>
+            <Fragment>
                 <img 
                     src={books} 
                     className="imgStyle"
@@ -24,7 +24,7 @@ class Home extends Component{
                 </Container>
                 <h1 className="hStyle">Experimente</h1>
                 <Search />
-            </React.Fragment>
+            </Fragment>
         )
     }
 }

@@ -1,13 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './Results.scss'
-import Context from '../../SearchContext'
+import SearchProvider, { Consumer } from '../../searchContext'
 
 class Results extends Component {
     render(){
         return(
-            <React.Fragment>
-                
-            </React.Fragment>
+            <SearchProvider>
+                <Consumer>
+                {value => 
+                    <Fragment>
+                        <h1>Results:</h1>
+                        <h1>
+                            {value}
+                        </h1>
+                    </Fragment>
+                }
+                </Consumer>
+            </SearchProvider>
         )
     }
 }

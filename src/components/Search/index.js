@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
-import Context from '../../SearchContext'
 import './Search.scss'
 
 const axios = require('axios')
@@ -25,16 +24,14 @@ class Search extends Component {
     }
 
     handleClick = () => {
-        console.log(this.state.searchValue)
+        //console.log(this.state.searchValue)
         axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue)
         .then(function (response) {
-            // handle success
-            console.log(response);
-            
+            console.log(response)
         })
         .catch(function (error) {
             // handle error
-            console.log(error);
+            console.log(error)
         })
         .then(function () {
             // always executed
@@ -43,7 +40,7 @@ class Search extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <Fragment>
                 <Form inline>
                     <FormGroup>
                         <Input 
@@ -58,7 +55,7 @@ class Search extends Component {
                         </Link>
                     </FormGroup>
                 </Form>
-            </React.Fragment>
+            </Fragment>
         )
     }
 }

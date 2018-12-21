@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
     Collapse,
     Navbar,
@@ -11,7 +11,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap'
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
     
 
 class Navigation extends React.Component {
@@ -30,7 +30,7 @@ class Navigation extends React.Component {
         }
         render() {
           return (
-            <div>
+            <Fragment>
               <Navbar color="dark" dark expand="md">
                 <NavbarBrand><Link to="/">Boox</Link></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
@@ -62,7 +62,7 @@ class Navigation extends React.Component {
                   </Nav>
                 </Collapse>
               </Navbar>
-            </div>
+            </Fragment>
           );
         }
       }

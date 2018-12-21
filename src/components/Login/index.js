@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {Jumbotron, Button, Container, Row, Col} from 'reactstrap'
 import Navbar from '../Navbar'
 import Footer from '../Footer'
@@ -10,7 +10,7 @@ class Login extends Component {
         return(
             <div className="App">
             <Navbar />
-            <React.Fragment >
+            <Fragment >
                 <Container>
                 <Row>
                 <Col xs="6"><Jumbotron className="container my-5">
@@ -34,7 +34,7 @@ class Login extends Component {
                 </Jumbotron></Col>
                 </Row>
                 </Container>
-            </React.Fragment>
+            </Fragment>
             <Footer />
             </div>
         )
