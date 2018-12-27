@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import './Results.scss'
-import SearchProvider, { Consumer } from '../../searchContext'
+import { Consumer } from '../../searchContext'
 
 class Results extends Component {
     render(){
         return(
-            <SearchProvider>
                 <Consumer>
                 {value => 
                     <Fragment>
@@ -16,7 +15,6 @@ class Results extends Component {
                     </Fragment>
                 }
                 </Consumer>
-            </SearchProvider>
         )
     }
 }
