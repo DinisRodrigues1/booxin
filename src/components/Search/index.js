@@ -22,7 +22,7 @@ class Search extends Component {
         this.setState({
             searchValue: event.target.value
         })
-        this.props.onChange(event)
+        this.props.onSearch(event.target.value)
     }
 
     handleClick = () => {
@@ -40,7 +40,6 @@ class Search extends Component {
     }
 
     render() {
-        console.log(this.state.search.searchValue)
         return (
             <Fragment>
                 <Form inline>
@@ -56,6 +55,7 @@ class Search extends Component {
                             <Button onClick={()=>this.handleClick()}>Search</Button>
                         </Link>
                     </FormGroup>
+                    <h1>{this.props.search}</h1>
                 </Form>
             </Fragment>
         )
@@ -64,13 +64,13 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        search: state.search.searchValue
+        search: state.searchValue
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleChange: (e) => dispatch({type: 'SEARCH', search: e})
+        onSearch: (e) => dispatch({type: 'SEARCH', search: e})
     }
 }
 
