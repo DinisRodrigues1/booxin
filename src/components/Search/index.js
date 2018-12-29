@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react'
 import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './Search.scss'
+import { connect } from 'react-redux'
 
 const axios = require('axios')
 
 class Search extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             searchValue: null
         }
@@ -21,6 +22,7 @@ class Search extends Component {
         this.setState({
             searchValue: event.target.value
         })
+        this.props.onChange(event)
     }
 
     handleClick = () => {
@@ -38,6 +40,7 @@ class Search extends Component {
     }
 
     render() {
+        console.log(this.state.search.searchValue)
         return (
             <Fragment>
                 <Form inline>
@@ -59,4 +62,16 @@ class Search extends Component {
     }
 }
 
-export default Search
+const mapStateToProps = (state) => {
+    return {
+        search: state.search.searchValue
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleChange: (e) => dispatch({type: 'SEARCH', search: e})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
