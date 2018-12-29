@@ -1,5 +1,5 @@
 const initialState = {
-    searchValue: null
+    searchResult: null
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const searchReducer = (state = initialState, action) => {
         case 'SEARCH':
             return {
                 ...state,
-                searchValue: action.search
+                searchResult: action.search
             }
         default:
             return state

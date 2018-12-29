@@ -22,21 +22,22 @@ class Search extends Component {
         this.setState({
             searchValue: event.target.value
         })
-        this.props.onSearch(event.target.value)
     }
 
     handleClick = () => {
-        axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue)
-        .then(function (response) {
-            console.log(response)
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error)
-        })
-        .then(function () {
-            console.log('then O CARALHO')
-        });
+        let _searchValue = this.state.searchValue
+        let _searchResult = null
+        async function getBooks() {
+            try {
+              const response = await axios.get('http://openlibrary.org/search.json?q='+_searchValue)
+              _searchResult = response
+              console.log(_searchResult)
+            } catch (error) {
+              console.error(error)
+            }
+        }
+        getBooks()
+        this.props.onSearch(_searchResult)
     }
 
     render() {
@@ -48,26 +49,27 @@ class Search extends Component {
                             type="text"
                             placeholder="Escolha um livro"
                             bsSize="lg"
-                            onChange={(e)=>this.handleChange(e)} />
+                            /* onChange={(e)=>this.handleChange(e)} */ />
                     </FormGroup>
                     <FormGroup>
                         <Link to='/results'>
                             <Button onClick={()=>this.handleClick()}>Search</Button>
                         </Link>
                     </FormGroup>
-                    <h1>{this.props.search}</h1>
                 </Form>
             </Fragment>
         )
     }
 }
 
+//para ler state global
 const mapStateToProps = (state) => {
     return {
-        search: state.searchValue
+        search: state.searchResult
     }
 }
 
+//para escrever no reducer
 const mapDispatchToProps = (dispatch) => {
     return {
         onSearch: (e) => dispatch({type: 'SEARCH', search: e})

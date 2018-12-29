@@ -17,7 +17,7 @@ class Results extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        search: state.searchValue
+        search: state.searchResult
     }
 }
 
