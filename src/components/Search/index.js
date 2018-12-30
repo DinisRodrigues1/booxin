@@ -41,7 +41,7 @@ class Search extends Component {
     render() {
         return (
             <Fragment>
-                <Form inline>
+                <Form inline className="justify-content-center margin">
                     <FormGroup>
                         <Input 
                             type="text"
@@ -51,7 +51,9 @@ class Search extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Link to='/results'>
-                            <Button onClick={()=>this.handleClick()}>Search</Button>
+                            <Button 
+                            className="margin-left"
+                            onClick={()=>this.handleClick()} color="link">🔎</Button>
                         </Link>
                     </FormGroup>
                 </Form>

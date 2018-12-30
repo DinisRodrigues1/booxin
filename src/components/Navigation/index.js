@@ -12,6 +12,7 @@ import {
     DropdownMenu,
     DropdownItem } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import brand from '../../assets/logo/brand.png'
     
 
 class Navigation extends React.Component {
@@ -32,7 +33,11 @@ class Navigation extends React.Component {
           return (
             <Fragment>
               <Navbar color="dark" dark expand="md">
-                <NavbarBrand><Link to="/">Boox</Link></NavbarBrand>
+                <NavbarBrand>
+                  <Link to="/">
+                    <img src={brand} />
+                  </Link>
+                </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
