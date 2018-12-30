@@ -10,7 +10,8 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state = {
-            searchValue: null
+            searchValue: null,
+            searchResult: null
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -25,19 +26,16 @@ class Search extends Component {
     }
 
     handleClick = () => {
-        let _searchValue = this.state.searchValue
-        let _searchResult = null
         async function getBooks() {
             try {
-              const response = await axios.get('http://openlibrary.org/search.json?q='+_searchValue)
-              _searchResult = response
-              console.log(_searchResult)
+              const response = await axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue)
+              
             } catch (error) {
               console.error(error)
             }
         }
         getBooks()
-        this.props.onSearch(_searchResult)
+        this.props.onSearch(this.state.searchResult)
     }
 
     render() {
@@ -49,7 +47,7 @@ class Search extends Component {
                             type="text"
                             placeholder="Escolha um livro"
                             bsSize="lg"
-                            /* onChange={(e)=>this.handleChange(e)} */ />
+                            onChange={(e)=>this.handleChange(e)} />
                     </FormGroup>
                     <FormGroup>
                         <Link to='/results'>

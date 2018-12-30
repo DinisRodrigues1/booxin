@@ -1,3 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga'
 
-function sagaEx
+export function* helloSaga() {
+    console.log('Hello Saga')
+}

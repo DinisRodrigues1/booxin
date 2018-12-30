@@ -4,7 +4,7 @@ import App from './App'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import { Provider } from 'react-redux'
+import { Provider, applyMiddleware } from 'react-redux'
 import configureStore from './store'
 
 const store = configureStore()
