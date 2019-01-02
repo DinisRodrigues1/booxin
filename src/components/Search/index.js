@@ -3,6 +3,8 @@ import {Form, FormGroup, Button, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './Search.scss'
 import { connect } from 'react-redux'
+import icon from '../../assets/logo/brand.png'
+
 
 const axios = require('axios')
 
@@ -26,17 +28,10 @@ class Search extends Component {
     }
 
     handleClick = () => {
-        async function getBooks() {
-            try {
-              const response = await axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue)
-              
-            } catch (error) {
-              console.error(error)
-            }
-        }
-        getBooks()
-        this.props.onSearch(this.state.searchResult)
+        this.props.onSearch('test')
     }
+        
+    
 
     render() {
         return (
@@ -52,8 +47,10 @@ class Search extends Component {
                     <FormGroup>
                         <Link to='/results'>
                             <Button 
+                            value="🔎"
                             className="margin-left"
-                            onClick={()=>this.handleClick()} color="link">🔎</Button>
+                            onClick={()=>this.handleClick()} color="link">
+                            <img src={icon}/></Button>
                         </Link>
                     </FormGroup>
                 </Form>
