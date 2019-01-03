@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Results from './components/Results'
 import About from './components/About'
 import Login from './components/Login'
+import Register from './components/Register'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path='/resultados' component={Results}/>
             <Route path="/sobre" component={About} />
             <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
             <Footer/>
           </div>
         </Switch>

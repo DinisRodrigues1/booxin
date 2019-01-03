@@ -6,17 +6,15 @@ import { NavLink, Nav, NavItem } from 'reactstrap'
 const SignedInLinks = () => {
     return (
         <React.Fragment>
-        
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink><NLink to="/sobre">Sobre </NLink></NavLink>
+              <NavLink><NLink to="/sobre">Sobre</NLink></NavLink>
             </NavItem>
             
             <NavItem>
-              <NavLink><NLink to="/login"> Login</NLink></NavLink>
+              <NavLink><NLink to="/login">Login</NLink></NavLink>
             </NavItem>              
           </Nav>
-    
         </React.Fragment>
     )
 }

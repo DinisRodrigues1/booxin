@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import './Results.scss'
 import { connect } from 'react-redux';
 import Pagination from "react-js-pagination";
+import { Media } from 'reactstrap';
+
 
 const itemsPerPage = 5;
 
@@ -39,22 +41,18 @@ class Results extends Component {
                 <h1>Results:</h1>
                     {this.props.search ? 
                          itemsShown.map((title) => (
-                         <div>
-                             <br/>
-                         <li key={title.author_name}>
-                         {"Nome do Autor: "+ title.author_name}
-                         </li>
-                         <li key={title.title}>
-                         {"Titulo do livro: " +title.title}
-                         </li>
-                         <li key={title.publisher}>
-                         {"Editora: " +title.publisher}
-                         </li>
-                         <br/>
-                         <hr/>
-                         
-                         </div>
-                         
+                        <Media className="mt-1">
+                            <Media left middle href="#">
+                            <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt="Generic placeholder image" />
+                        </Media>
+                        <Media body>
+                             <Media heading>
+                                    Autor: {title.author_name}
+                            </Media>
+                                    <p>Título: {title.title}</p>
+                                    <p>Editora: {title.publisher}</p>
+                        </Media>
+                        </Media>
                          )) : `vazio`}
                        <Pagination
                             activePage={this.state.activePage}

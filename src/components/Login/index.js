@@ -1,38 +1,62 @@
 import React, { Component, Fragment } from 'react'
-import {Jumbotron, Button, Container, Row, Col} from 'reactstrap'
+import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
+    state = {
+        username: '',
+        password: ''
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+    }
     render(){
         return(
-            <Fragment >
+            <Fragment>
                 <Container>
                 <Row>
                 <Col xs="6"><Jumbotron className="container my-5">
                 <h1 className="text-left">Login:</h1>
                 <hr className="my-2" />
                 <div>
-                    <input placeholder="Utilizador"/>
-                    <input placeholder="Password"/>
+                <Form onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                        <Label className="text-left" for="exampleEmail">Username:</Label>
+                        <Input type="email" name="email" id="username" onChange={this.handleChange} placeholder="Email" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="text-left" for="examplePassword">Password:</Label>
+                        <Input type="password" name="password" id="password" onChange={this.handleChange} placeholder="Password" />
+                    </FormGroup>
+                <FormGroup>
+                <Button type="submit" className="mb-3" color="primary">Entrar</Button>
+                </FormGroup>
+                </Form>    
                 </div>
-                <Button color="primary">Entrar</Button>
                 <p><a href="">Esqueci a minha Password</a></p>
                 <hr className="my-2" />
                 <p>Ainda não tem conta?</p>
                 <p className="lead">
-                <Button color="secondary">Registe-se</Button>
+                <Link to="/register"><Button color="secondary">Registe-se</Button></Link>
                 </p>
                 </Jumbotron></Col>
     
                 <Col xs="6"><Jumbotron className="container my-5">
-                <h1 className="text-left">Login através do:</h1>
+                <h1 className="text-left mb-5">Login através do:</h1>
                 <p>
-                    <Button color="primary">Facebook</Button>
+                    <Button className="mb-4" color="primary btn-md btn-block">Facebook</Button>
                 </p>
                 <p>
-                    <Button color="info">Twitter</Button>
+                    <Button className="mb-4" color="info btn-md btn-block">Twitter</Button>
                 </p>
                 <p>
-                    <Button color="danger">Gmail</Button>
+                    <Button color="danger btn-md btn-block">G-mail</Button>
                 </p>
                 </Jumbotron></Col>
                 </Row>
