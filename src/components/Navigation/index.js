@@ -4,11 +4,11 @@ import {
     Navbar,
     NavbarToggler,
     NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink} from 'reactstrap'
-import { Link, NavLink as NLink } from 'react-router-dom'
+    } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import brand from '../../assets/logo/brand.png'
+import SignedInLinks from './SignedInLinks'
+import SignedOutLinks from './SignedOutLinks'
     
 
 class Navigation extends React.Component {
@@ -36,17 +36,8 @@ class Navigation extends React.Component {
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
-                  <Nav className="ml-auto" navbar>
-                 
-                    <NavItem>
-                      <NavLink><NLink to="/sobre">Sobre </NLink></NavLink>
-                    </NavItem>
-                    
-                    <NavItem>
-                      <NavLink><NLink to="/login"> Login</NLink></NavLink>
-                    </NavItem>
-                    
-                  </Nav>
+                <SignedInLinks/>
+                <SignedOutLinks/>
                 </Collapse>
               </Navbar>
             </Fragment>
