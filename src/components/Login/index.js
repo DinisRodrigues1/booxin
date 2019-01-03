@@ -4,8 +4,6 @@ import Navbar from '../Navbar'
 import Footer from '../Footer'
 
 class Login extends Component {
-   
-
     render(){
         return(
             <div className="App">
