@@ -12,9 +12,7 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state = {
-            searchValue: null,
-            searchResult: null,
-            searchF: false
+            searchValue: null
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -58,7 +56,7 @@ class Search extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button type="submit">
-                            <img src={icon}/>
+                            <img src={icon} className="imgMargin"/>
                         </Button>
                     </FormGroup>
                 </Form>
