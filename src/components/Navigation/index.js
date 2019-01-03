@@ -6,11 +6,7 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap'
+    NavLink} from 'reactstrap'
 import { Link, NavLink as NLink } from 'react-router-dom'
 import brand from '../../assets/logo/brand.png'
     

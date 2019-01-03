@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Form, FormGroup, Button, Input} from 'reactstrap'
+import {Form, FormGroup, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './Search.scss'
 import { connect } from 'react-redux'
@@ -56,12 +56,7 @@ class Search extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Link to='/results'>
-                            <Button
-                            type="Submit" 
-                            value="🔎"
-                            className="margin-left"
-                            >
-                            <img src={icon}/></Button>
+                            <img src={icon}/>
                         </Link>
                     </FormGroup>
                 </Form>

@@ -5,6 +5,8 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import Results from './components/Results'
+import About from './components/About'
+import Login from './components/Login'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -16,7 +18,9 @@ class App extends Component {
           <div className="App">
             <Navigation />
             <Route exact path='/' component={Home}/>
-            <Route path='/results' component={Results}/>
+            <Route path='/resultados' component={Results}/>
+            <Route path="/sobre" component={About} />
+            <Route path="/login" component={Login} />
             <Footer/>
           </div>
         </Switch>
