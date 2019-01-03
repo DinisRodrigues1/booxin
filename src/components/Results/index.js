@@ -8,7 +8,7 @@ class Results extends Component {
             <Fragment>
                 <h1>Results:</h1>
                 <h1>
-                    {this.props.search ? this.props.search : `vazio`}
+                    {this.props.search ? this.props.search[0].author_name : `vazio`}
                 </h1>
             </Fragment>
         )
@@ -18,7 +18,7 @@ class Results extends Component {
 //this.props.search.value.data
 const mapStateToProps = (state) => {
     return {
-        search: state.searchResult
+        search: state.search
     }
 }
 

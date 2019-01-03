@@ -12,9 +12,7 @@ class Search extends Component {
     constructor(props){
         super(props)
         this.state = {
-            searchValue: null,
-            searchResult: null,
-            searchF: false
+            searchValue: null
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -35,12 +33,12 @@ class Search extends Component {
             })
             .then((response) => {
                 this.props.onSearch(response.data.docs);
-                console.log(this.props.search[0].author_name)
+                console.log(response.data)
             })
             .catch( (error) =>{
             console.log(error);
             }).then(()=>{
-                this.props.history.push("/results");
+                this.props.history.push("/resultados");
             })
     }
         
@@ -59,7 +57,7 @@ class Search extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Button type="submit">
-                            <img src={icon}/>
+                            <img src={icon} className="imgMargin"/>
                         </Button>
                     </FormGroup>
                 </Form>
