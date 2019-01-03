@@ -13,7 +13,8 @@ class Search extends Component {
         super(props)
         this.state = {
             searchValue: null,
-            searchResult: null
+            searchResult: null,
+            searchF: false
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -28,7 +29,16 @@ class Search extends Component {
     }
 
     handleClick = () => {
-        this.props.onSearch('test')
+        this.props.onSearch(
+        axios.get('http://openlibrary.org/search.json?q='+this.props.searchValue, {
+            })
+            .then(function (response) {
+            console.log(response);
+            })
+            .catch(function (error) {
+            console.log(error);
+            })
+        )
     }
         
     

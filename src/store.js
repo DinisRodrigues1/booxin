@@ -1,13 +1,17 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import searchReducer from './components/Search/reducer'
 import { rootSaga } from './sagas/sagas';
 
 const sagaMiddleware = createSagaMiddleware()
+
+const reduxDevTools =
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
 export default function configureStore(/* initialState = {} */) {
     const store = createStore(
         searchReducer,
-        applyMiddleware(sagaMiddleware)
+        compose(applyMiddleware(sagaMiddleware), reduxDevTools)
     )
     sagaMiddleware.run(rootSaga)
 
