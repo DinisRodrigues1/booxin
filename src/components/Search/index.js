@@ -30,17 +30,16 @@ class Search extends Component {
 
     handleClick = (event) => {
         event.preventDefault();
-        console.log(this.props.search)
         axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue, {
             })
             .then((response) => {
                 this.props.onSearch(response.data.docs);
-                console.log(this.props.search[0].author_name)
+                console.log(this.props.search)
             })
             .catch( (error) =>{
             console.log(error);
             }).then(()=>{
-                this.props.history.push("/results");
+                this.props.history.push("/resultados");
             })
     }
         
