@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Form, FormGroup, Input} from 'reactstrap'
+import {Form, FormGroup, Input, Button} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import './Search.scss'
 import { connect } from 'react-redux'
@@ -28,17 +28,20 @@ class Search extends Component {
         })
     }
 
-    handleClick = () => {
-        this.props.onSearch(
-        axios.get('http://openlibrary.org/search.json?q='+this.props.searchValue, {
+    handleClick = (event) => {
+        event.preventDefault();
+        console.log(this.props.search)
+        axios.get('http://openlibrary.org/search.json?q='+this.state.searchValue, {
             })
-            .then(function (response) {
-            console.log(response);
+            .then((response) => {
+                this.props.onSearch(response.data.docs);
+                console.log(this.props.search[0].author_name)
             })
-            .catch(function (error) {
+            .catch( (error) =>{
             console.log(error);
+            }).then(()=>{
+                this.props.history.push("/results");
             })
-        )
     }
         
     
@@ -46,7 +49,7 @@ class Search extends Component {
     render() {
         return (
             <Fragment>
-                <Form inline className="justify-content-center margin" onSubmit={()=>this.handleClick()} color="link">
+                <Form inline className="justify-content-center margin" onSubmit={this.handleClick} color="link">
                     <FormGroup>
                         <Input 
                             type="text"
@@ -55,9 +58,9 @@ class Search extends Component {
                             onChange={(e)=>this.handleChange(e)} />
                     </FormGroup>
                     <FormGroup>
-                        <Link to='/results'>
+                        <Button type="submit">
                             <img src={icon}/>
-                        </Link>
+                        </Button>
                     </FormGroup>
                 </Form>
             </Fragment>
@@ -68,14 +71,14 @@ class Search extends Component {
 //para ler state global
 const mapStateToProps = (state) => {
     return {
-        search: state.searchResult
+        search: state.search
     }
 }
 
 //para escrever no reducer
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearch: (e) => dispatch({type: 'SEARCH', search: e})
+        onSearch: (e) => dispatch({type: 'SEARCH', payload: e})
     }
 }
 

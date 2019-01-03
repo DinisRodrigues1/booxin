@@ -23,7 +23,7 @@ class Home extends Component{
                 </Row>
                 </Container>
                 <h1 className="justify-content-center">Experimente!</h1>
-                <Search />
+                <Search history={this.props.history}/>
             </Fragment>
         )
     }
