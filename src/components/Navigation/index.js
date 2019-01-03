@@ -11,7 +11,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link, NavLink as NLink } from 'react-router-dom'
 import brand from '../../assets/logo/brand.png'
     
 
@@ -41,12 +41,15 @@ class Navigation extends React.Component {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
+                 
                     <NavItem>
-                      <NavLink><Link to="/sobre">Sobre</Link></NavLink>
+                      <NavLink><NLink to="/sobre">Sobre </NLink></NavLink>
                     </NavItem>
+                    
                     <NavItem>
-                      <NavLink><Link to="/login">Login</Link></NavLink>
+                      <NavLink><NLink to="/login"> Login</NLink></NavLink>
                     </NavItem>
+                    
                   </Nav>
                 </Collapse>
               </Navbar>
