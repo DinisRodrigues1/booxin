@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import brand from '../../assets/logo/brand.png'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
+import { connect } from 'react-redux'
     
 
 class Navigation extends React.Component {
@@ -45,4 +46,11 @@ class Navigation extends React.Component {
         }
       }
 
-export default Navigation
+const mapStateToProps = (state) => {
+  console.log(state)
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)

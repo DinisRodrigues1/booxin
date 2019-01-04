@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signIn } from './authActions'
 
 class Login extends Component {
     state = {
-        username: '',
+        email: '',
         password: ''
     }
     handleChange = (e) => {
@@ -14,7 +16,7 @@ class Login extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
+        this.props.signIn(this.state)
     }
     render(){
         return(
@@ -27,8 +29,8 @@ class Login extends Component {
                 <div>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label className="text-left" for="exampleEmail">Username:</Label>
-                        <Input type="email" name="email" id="username" onChange={this.handleChange} placeholder="Email" />
+                        <Label className="text-left" for="exampleEmail">Email:</Label>
+                        <Input type="email" name="email" id="email" onChange={this.handleChange} placeholder="Email" />
                     </FormGroup>
                     <FormGroup>
                         <Label className="text-left" for="examplePassword">Password:</Label>
@@ -66,4 +68,10 @@ class Login extends Component {
     }
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Login)
