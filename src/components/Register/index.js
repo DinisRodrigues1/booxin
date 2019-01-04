@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from 'react'
-import {Jumbotron, Button, Col, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Jumbotron, Button, Col, Form, FormGroup, Label, Input, Alert} from 'reactstrap'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { signUp } from '../Login/authActions'
+
 
 class Register extends Component {
     state = {
         email: '',
-        username: '',
+        userName: '',
         password: ''
     }
     handleChange = (e) => {
@@ -14,10 +18,12 @@ class Register extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
+        this.props.signUp(this.state)
     }
-
+    
     render(){
+        const { authError, auth } = this.props
+        if (auth.uid) return <Redirect to='/' />
         return(
             <Fragment>
                
@@ -32,7 +38,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Label className="text-left" for="exampleUser">Username:</Label>
-                        <Input type="text" name="username" id="username" onChange={this.handleChange} placeholder="Username" />
+                        <Input type="text" name="userName" id="userName" onChange={this.handleChange} placeholder="Username" />
                     </FormGroup>
                     <FormGroup>
                         <Label className="text-left" for="examplePassword">Password:</Label>
@@ -40,6 +46,7 @@ class Register extends Component {
                     </FormGroup>
                 <FormGroup>
                 <Button className="mt-3" type="submit" color="primary">Registar</Button>
+                <div>{ authError ? <Alert color="danger">{authError}</Alert>: null}</div>
                 </FormGroup>
                 </Form>   
                 </div> 
@@ -51,4 +58,15 @@ class Register extends Component {
     }
 }
 
-export default Register
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => dispatch(signUp(newUser))
+    }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(Register)
