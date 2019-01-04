@@ -28,9 +28,9 @@ class Navigation extends React.Component {
         }
         
         render() {
-          const { auth } = this.props
+          const { auth, profile } = this.props
           // console.log(auth)
-          const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />
+          const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
           return (
             <Fragment>
               <Navbar color="dark" dark expand="md">
@@ -51,7 +51,8 @@ class Navigation extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
     }
 }
 

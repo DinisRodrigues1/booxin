@@ -27,7 +27,7 @@ class Results extends Component {
 
     render(){
         var arr = Object.values(this.props.search)
-        console.log(arr)
+        console.log(this.props.search, arr)
         const indexOfLastThing = this.state.activePage * itemsPerPage;
         const indexOfFirstThing = indexOfLastThing - itemsPerPage;
         // For page 1, you will get things.slice(0, 5).
@@ -38,7 +38,8 @@ class Results extends Component {
         );
         localStorage.setItem('show', itemsShown)
         let storage = localStorage.getItem('show')
-        console.log(typeof(JSON.parse(storage)))
+        let storageJ = JSON.stringify(storage)
+        let storr = JSON.parse(storageJ)
 
 
         return(
@@ -49,7 +50,9 @@ class Results extends Component {
                         <div className="wrapper">
                             <Media className="mt-1">
                                 <Media left middle href="" className="cover">
+                                {title.isbn[0] ? 
                                     <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt="Generic placeholder image" />
+                                    : title.isbn[1]}
                                 </Media>
                                 
                                 <Media body className="info">
