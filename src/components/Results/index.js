@@ -60,8 +60,8 @@ class Results extends Component {
                                         Autor: {title.author_name}
                                     </Media>
                                         <p>Título: {title.title}</p>
-                                        <p>Editora: {title.publisher}</p>
-                                </Media>
+                                        {title.publisher[1] ? <p>Editora: {title.publisher[0] +", " + title.publisher[1]}</p> : <p>Editora: {title.publisher[0]}</p>}
+                                </Media> 
                             </Media>
                         </div>     
                          )) : `vazio`}
