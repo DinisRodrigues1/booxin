@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Jumbotron, Button, Col, Form, FormGroup, Label, Input} from 'reactstrap'
 
 class Register extends Component {
     state = {

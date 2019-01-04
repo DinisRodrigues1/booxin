@@ -31,7 +31,7 @@ class Navigation extends React.Component {
               <Navbar color="dark" dark expand="md">
                 <NavbarBrand>
                   <Link to="/">
-                    <img src={brand} />
+                    <img src={brand} alt="boox brand logo"/>
                   </Link>
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import {Form, FormGroup, Input, Button} from 'reactstrap'
-import { Link } from 'react-router-dom'
 import './Search.scss'
 import { connect } from 'react-redux'
 import icon from '../../assets/logo/brand.png'
