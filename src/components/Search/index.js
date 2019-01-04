@@ -31,7 +31,7 @@ class Search extends Component {
             })
             .then((response) => {
                 this.props.onSearch(response.data.docs);
-                console.log(this.props.search[0].isbn[0])
+                console.log(this.props.search)
             })
             .catch( (error) =>{
             console.log(error);

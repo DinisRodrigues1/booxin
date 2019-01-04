@@ -1,7 +1,3 @@
-const SEARCH_REQUEST = 'SEARCH_REQUEST'
-const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
-const SEARCH_FAILURE = 'SEARCH_FAILURE'
-
 const initialState = {
     search: null
 }

@@ -1,21 +1,21 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import searchReducer from './components/Search/reducer'
-import { rootSaga } from './sagas/sagas'
-import { getFirestore } from 'redux-firestore'
-import { getFirebase } from 'react-redux-firebase'
-
-const sagaMiddleware = createSagaMiddleware()
+import thunk from 'redux-thunk'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import fbConfig from './config/fbConfig'
+import rootReducer from './reducers';
 
 const reduxDevTools =
 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
+const store = createStore(rootReducer, applyMiddleware(thunk))
 export default function configureStore(/* initialState = {} */) {
-    const store = createStore(
-        searchReducer,
-        compose(applyMiddleware(sagaMiddleware.withExtraArgument({getFirebase, getFirestore})), reduxDevTools)
+    const store = createStore(rootReducer,
+        compose(applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase, reduxDevTools })),
+        reduxFirestore(fbConfig),
+        reactReduxFirebase(fbConfig)
+        )
     )
-    sagaMiddleware.run(rootSaga)
 
     return store
 }

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import './Results.scss'
 import { connect } from 'react-redux';
 import Pagination from "react-js-pagination";
+import { Pagination as Page } from "reactstrap"
 import { Media } from 'reactstrap';
 
 
@@ -31,7 +32,7 @@ class Results extends Component {
         const indexOfFirstThing = indexOfLastThing - itemsPerPage;
         // For page 1, you will get things.slice(0, 5).
         // For page 2, you will get things.slice(5, 10).
-        const itemsShown = arr.slice(
+        const itemsShown = arr[0].slice(
           indexOfFirstThing,
           indexOfLastThing
         );
@@ -54,13 +55,15 @@ class Results extends Component {
                         </Media>
                         </Media>
                          )) : `vazio`}
+                        <Page>
                        <Pagination
                             activePage={this.state.activePage}
                             itemsCountPerPage={10}
-                            totalItemsCount={this.props.search.length}
+                            totalItemsCount={arr[0].length}
                             pageRangeDisplayed={5}
                             onChange={this.handlePageChange.bind(this)}
-                        />
+                            />
+                            </Page>
               </Fragment>
         )}
 }

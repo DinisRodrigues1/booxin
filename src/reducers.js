@@ -1,4 +1,4 @@
-import { combineReducers } from 'react-redux'
+import { combineReducers } from 'redux'
 import searchReducer from './components/Search/reducer'
 import authReducer from './authReducer'
 
