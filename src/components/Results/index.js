@@ -36,34 +36,41 @@ class Results extends Component {
           indexOfFirstThing,
           indexOfLastThing
         );
+        localStorage.setItem('show', itemsShown)
+        let storage = localStorage.getItem('show')
+        console.log(typeof(JSON.parse(storage)))
+
 
         return(
             <Fragment>
                 <h1>Results:</h1>
                     {this.props.search ? 
-                         itemsShown.map((title) => (
-                        <Media className="mt-1">
-                            <Media left middle href="#">
-                            <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt="Generic placeholder image" />
-                        </Media>
-                        <Media body>
-                             <Media heading>
-                                    Autor: {title.author_name}
+                        itemsShown.map((title) => (
+                        <div className="wrapper">
+                            <Media className="mt-1">
+                                <Media left middle href="" className="cover">
+                                    <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt="Generic placeholder image" />
+                                </Media>
+                                
+                                <Media body className="info">
+                                    <Media heading>
+                                        Autor: {title.author_name}
+                                    </Media>
+                                        <p>Título: {title.title}</p>
+                                        <p>Editora: {title.publisher}</p>
+                                </Media>
                             </Media>
-                                    <p>Título: {title.title}</p>
-                                    <p>Editora: {title.publisher}</p>
-                        </Media>
-                        </Media>
+                        </div>     
                          )) : `vazio`}
                         <Page>
-                       <Pagination
-                            activePage={this.state.activePage}
-                            itemsCountPerPage={10}
-                            totalItemsCount={arr[0].length}
-                            pageRangeDisplayed={5}
-                            onChange={this.handlePageChange.bind(this)}
-                            />
-                            </Page>
+                            <Pagination
+                                activePage={this.state.activePage}
+                                itemsCountPerPage={10}
+                                totalItemsCount={arr[0].length}
+                                pageRangeDisplayed={5}
+                                onChange={this.handlePageChange.bind(this)}
+                                />
+                        </Page>
               </Fragment>
         )}
 }
