@@ -13,7 +13,7 @@ export default function configureStore(/* initialState = {} */) {
     const store = createStore(rootReducer,
         compose(applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase, reduxDevTools })),
         reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig)
+        reactReduxFirebase(fbConfig, {attachAuthIsReady: true})
         )
     )
 

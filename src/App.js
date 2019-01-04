@@ -8,11 +8,15 @@ import Results from './components/Results'
 import About from './components/About'
 import Login from './components/Login'
 import Register from './components/Register'
+import UserPage from './components/UserPage'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 class App extends Component {
   render() {
+
+    
     return (
       <Router>
         <Switch>
@@ -23,11 +27,18 @@ class App extends Component {
             <Route path="/sobre" component={About} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/userpage" component={UserPage} />
             <Footer/>
           </div>
         </Switch>
       </Router>
     );
+  }
+}
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    auth: state.firebase.auth
   }
 }
 

@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input, Alert} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signIn } from './authActions'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     state = {
@@ -19,6 +20,8 @@ class Login extends Component {
         this.props.signIn(this.state)
     }
     render(){
+        const { authError, auth } = this.props
+        if (auth.uid) return <Redirect to="/" />
         return(
             <Fragment>
                 <Container>
@@ -39,7 +42,9 @@ class Login extends Component {
                 <FormGroup>
                 <Button type="submit" className="mb-3" color="primary">Entrar</Button>
                 </FormGroup>
-                </Form>    
+                <div>{ authError ? <Alert color="danger">{authError}</Alert>: null}</div>
+                </Form>
+                   
                 </div>
                 <p><a href="">Esqueci a minha Password</a></p>
                 <hr className="my-2" />
@@ -68,10 +73,17 @@ class Login extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn: (creds) => dispatch(signIn(creds))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

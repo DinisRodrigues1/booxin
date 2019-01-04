@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 class Navigation extends React.Component {
         constructor(props) {
           super(props);
-      
+          
           this.toggle = this.toggle.bind(this);
           this.state = {
             isOpen: false
@@ -26,7 +26,11 @@ class Navigation extends React.Component {
             isOpen: !this.state.isOpen
           });
         }
+        
         render() {
+          const { auth } = this.props
+          // console.log(auth)
+          const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />
           return (
             <Fragment>
               <Navbar color="dark" dark expand="md">
@@ -37,8 +41,7 @@ class Navigation extends React.Component {
                 </NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
-                <SignedInLinks/>
-                <SignedOutLinks/>
+                { links }
                 </Collapse>
               </Navbar>
             </Fragment>
@@ -47,9 +50,8 @@ class Navigation extends React.Component {
       }
 
 const mapStateToProps = (state) => {
-  console.log(state)
     return {
-
+        auth: state.firebase.auth
     }
 }
 
