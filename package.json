@@ -1,5 +1,6 @@
 {
-  "name": "boox",
+  "name": "booxin",
+  "homepage" : "https://pantaleao.github.io/booxin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
