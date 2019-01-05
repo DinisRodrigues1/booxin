@@ -27,19 +27,19 @@ class Results extends Component {
 
     render(){
         var arr = Object.values(this.props.search)
-        console.log(this.props.search, arr)
+        window.localStorage.setItem('show', JSON.stringify(arr))
+        let storage = window.localStorage.getItem('show')
+        let usage = JSON.parse(storage)
+        console.log(storage)
         const indexOfLastThing = this.state.activePage * itemsPerPage;
         const indexOfFirstThing = indexOfLastThing - itemsPerPage;
         // For page 1, you will get things.slice(0, 5).
         // For page 2, you will get things.slice(5, 10).
-        const itemsShown = arr[0].slice(
+        const itemsShown = usage[0].slice(
           indexOfFirstThing,
           indexOfLastThing
         );
-        localStorage.setItem('show', itemsShown)
-        let storage = localStorage.getItem('show')
-        let storageJ = JSON.stringify(storage)
-        let storr = JSON.parse(storageJ)
+        
 
 
         return(

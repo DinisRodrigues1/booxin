@@ -1,3 +1,5 @@
+import { facebookProvider, googleProvider, twitterProvider } from "../../config/fbConfig";
+
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
@@ -43,3 +45,86 @@ export const signUp = (newUser) => {
         })
     }
 }
+
+export const signUpFacebook = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+    firebase.auth().signInWithPopup(facebookProvider).then((result) => {
+        console.log("HERE?")
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        
+        // The signed-in user info.
+        var user = result.user.displayName;
+        console.log(user)
+        // ...
+      }).then(() =>
+            dispatch({type: 'SIGNIN_FACE_SUCCESS'}))
+      .catch(error => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        dispatch({ type: 'SIGNIN_FACE_ERROR', error})
+        // ...
+      });
+    } 
+} 
+
+export const signUpTwitter = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+    firebase.auth().signInWithPopup(twitterProvider).then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    } 
+} 
+
+export const signUpGoogle = () => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+    firebase.auth().signInWithPopup(googleProvider).then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    } 
+} 
+/* CHANGE PASSWORD */
+/*
+var auth = firebase.auth();
+var emailAddress = "user@example.com";
+
+auth.sendPasswordResetEmail(emailAddress).then(function() {
+  // Email sent.
+}).catch(function(error) {
+  // An error happened.
+});
+*/

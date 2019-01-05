@@ -2,13 +2,16 @@ import React, { Component, Fragment } from 'react'
 import {Jumbotron, Button, Container, Row, Col, Form, FormGroup, Label, Input, Alert} from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { signIn } from './authActions'
+import { signIn, signUpFacebook, signUpGoogle, signUpTwitter } from './authActions'
 import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        token: '',
+        user: '',
+        name: ''
     }
     handleChange = (e) => {
         this.setState({
@@ -19,9 +22,21 @@ class Login extends Component {
         e.preventDefault()
         this.props.signIn(this.state)
     }
+    facebookLogin = (e) => {
+        e.preventDefault()
+        this.props.signUpFacebook()
+    }
+    googleLogin = (e) => {
+        e.preventDefault()
+        this.props.signUpGoogle(this.state)
+    }
+    twitterLogin = (e) => {
+        e.preventDefault()
+        this.props.signUpTwitter(this.state)
+    }
     render(){
         const { authError, auth } = this.props
-        if (auth.uid) return <Redirect to="/" />
+        if (auth.uid) return <Redirect to="/" /> // IMPLEMENT CHANGE PASSWORD AND FORGOT PASSWORD
         return(
             <Fragment>
                 <Container>
@@ -46,7 +61,7 @@ class Login extends Component {
                 </Form>
                    
                 </div>
-                <p><a href="">Esqueci a minha Password</a></p>
+                <p><a href="">Esqueci a minha Password</a></p> 
                 <hr className="my-2" />
                 <p>Ainda não tem conta?</p>
                 <p className="lead">
@@ -57,13 +72,13 @@ class Login extends Component {
                 <Col xs="6"><Jumbotron className="container my-5">
                 <h1 className="text-left mb-5">Login através do:</h1>
                 <p>
-                    <Button className="mb-4" color="primary btn-md btn-block">Facebook</Button>
+                    <Button className="mb-4" color="primary btn-md btn-block" onClick={this.facebookLogin}>Facebook</Button>
                 </p>
                 <p>
-                    <Button className="mb-4" color="info btn-md btn-block">Twitter</Button>
+                    <Button className="mb-4" color="info btn-md btn-block" onClick={this.twitterLogin}>Twitter</Button>
                 </p>
                 <p>
-                    <Button color="danger btn-md btn-block">G-mail</Button>
+                    <Button color="danger btn-md btn-block" onClick={this.googleLogin}>G-mail</Button>
                 </p>
                 </Jumbotron></Col>
                 </Row>
@@ -82,7 +97,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (creds) => dispatch(signIn(creds))
+        signIn: (creds) => dispatch(signIn(creds)),
+        signUpFacebook: () => dispatch(signUpFacebook()),
+        signUpGoogle,
+        signUpTwitter
     }
 }
 

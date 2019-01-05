@@ -7,7 +7,7 @@ export const Provider = searchContext.Provider
 
 class SearchProvider extends Component {
   state = {
-    searchValue: 'test string from SearchProvider.state.searchResult'
+    searchValue: ''
   }
 
   render() {
