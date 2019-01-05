@@ -3,7 +3,7 @@ import './Results.scss'
 import { connect } from 'react-redux';
 import Pagination from "react-js-pagination";
 import { Pagination as Page } from "reactstrap"
-import { Media } from 'reactstrap';
+import { Media, Button } from 'reactstrap';
 
 
 const itemsPerPage = 5;
@@ -47,24 +47,35 @@ class Results extends Component {
                 <h1>Results:</h1>
                     {this.props.search ? 
                         itemsShown.map((title) => (
-                        <div className="wrapper">
-                            <Media className="mt-1">
-                                <Media left middle href="" className="cover">
-                                {title.isbn[0] ? 
-                                    <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt="Generic placeholder image" />
-                                    : title.isbn[1]}
-                                </Media>
-                                
-                                <Media body className="info">
-                                    <Media heading>
-                                        Autor: {title.author_name}
+                        <div className="d-xl-flex">
+                            <Media className="mt-1 flex-row justify-content-around">
+                                <div className="d-flex justify-content-center">
+                                    <Media left middle href="" className="cover">
+                                    {title.isbn[0] ? 
+                                        <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt={title.title} className="size"/>
+                                        : title.isbn[1]}
                                     </Media>
-                                        <p>Título: {title.title}</p>
-                                        {title.publisher[1] ? <p>Editora: {title.publisher[0] +", " + title.publisher[1]}</p> : <p>Editora: {title.publisher[0]}</p>}
-                                </Media> 
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <Media body className="info text-center">
+                                        <Media heading>
+                                            Autor: {title.author_name}
+                                        </Media>
+                                            <p>Título: {title.title}</p>
+                                            {title.publisher[1] ? <p>Editora: {title.publisher[0] +", " + title.publisher[1] + ", entre outras."}</p> : <p>Editora: {title.publisher[0]}</p>}
+                                    </Media> 
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                        <Button color="primary" className="">
+                                            + info
+                                        </Button><br/>
+                                        <Button color="primary" className="">
+                                            Adicionar
+                                        </Button>
+                                </div>
                             </Media>
                         </div>     
-                         )) : `vazio`}
+                         )) : `Erro de pesquisa`}
                         <Page>
                             <Pagination
                                 activePage={this.state.activePage}

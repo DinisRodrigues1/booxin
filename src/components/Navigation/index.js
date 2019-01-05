@@ -6,7 +6,7 @@ import {
     NavbarBrand,
     } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import brand from '../../assets/logo/brand.png'
+import brand from '../../assets/logo/logo.png'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
@@ -33,7 +33,7 @@ class Navigation extends React.Component {
           const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
           return (
             <Fragment>
-              <Navbar color="dark" dark expand="md">
+              <Navbar color="light" dark expand="md">
                 <NavbarBrand>
                   <Link to="/">
                     <img src={brand} alt="boox brand logo"/>
