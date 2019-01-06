@@ -3,6 +3,7 @@ import './Results.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
+import { Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
 
 
@@ -27,8 +28,10 @@ class Results extends Component {
         });
     }
 
-    handleAdd() {
+    handleAdd = (e) => {
+        const { auth } = this.props
         console.log('data added')
+        if (!auth.uid) return <Redirect to='/login' />
        /* this.setState({
             author_name: mapdata.title.author_name
             
@@ -37,6 +40,7 @@ class Results extends Component {
     }
 
     render(){
+        
         var arr = Object.values(this.props.search)
         window.localStorage.setItem('show', JSON.stringify(arr))
         let storage = window.localStorage.getItem('show')
@@ -103,7 +107,8 @@ class Results extends Component {
 //this.props.search.value.data
 const mapStateToProps = (state) => {
     return {
-        search: state.search
+        search: state.search,
+        auth: state.firebase.auth
     }
 }
 
