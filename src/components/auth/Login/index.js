@@ -62,7 +62,7 @@ class Login extends Component {
                 </Form>
                    
                 </div>
-                <p><a href="">Esqueci a minha Password</a></p> 
+                <p><Link to="/passwordreset">Esqueci a minha Password</Link></p> 
                 <hr className="my-2" />
                 <p>Ainda não tem conta?</p>
                 <p className="lead">

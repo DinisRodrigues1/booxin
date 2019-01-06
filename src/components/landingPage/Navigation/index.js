@@ -6,7 +6,7 @@ import {
     NavbarBrand,
     } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import brand from '../../assets/logo/logo.png'
+import brand from '../../../assets/logo/logo.png'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'

@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink as NLink } from 'react-router-dom'
 import { NavLink, Nav, NavItem } from 'reactstrap'
 import { connect } from 'react-redux'
-import { signOut } from '../Login/authActions'
+import { signOut } from '../../auth/Login/authActions'
 
 const SignedInLinks = (props) => {
   console.log(props)

@@ -1,4 +1,4 @@
-import { facebookProvider, googleProvider, twitterProvider } from "../../config/fbConfig";
+import { facebookProvider, googleProvider, twitterProvider } from "../../../config/fbConfig";
 
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
