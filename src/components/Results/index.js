@@ -1,28 +1,39 @@
 import React, { Component, Fragment } from 'react'
 import './Results.scss'
-import { connect } from 'react-redux';
-import Pagination from "react-js-pagination";
+import { connect } from 'react-redux'
+import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
-import { Media, Button } from 'reactstrap';
+import { Media, Button } from 'reactstrap'
 
 
-const itemsPerPage = 5;
+const itemsPerPage = 5
+
 
 class Results extends Component {
     constructor (props) {
-        super(props);
+        super(props)
         this.state = {
-            activePage: 1
+            activePage: 1,
+            author_name: ''
         };
 
              
     }
 
     handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
+        console.log(`active page is ${pageNumber}`)
         this.setState({
             activePage: pageNumber
         });
+    }
+
+    handleAdd() {
+        console.log('data added')
+       /* this.setState({
+            author_name: mapdata.title.author_name
+            
+        }) 
+        console.log(this.state.author_name)*/
     }
 
     render(){
@@ -40,13 +51,13 @@ class Results extends Component {
           indexOfLastThing
         );
         
-
+        var mapdata
 
         return(
-            <Fragment>
+            <Fragment> 
                 <h1>Results:</h1>
                     {this.props.search ? 
-                        itemsShown.map((title) => (
+                      mapdata = itemsShown.map((title) => (
                         <div className="d-xl-flex">
                             <Media className="mt-1 flex-row justify-content-around">
                                 <div className="d-flex justify-content-center">
@@ -66,10 +77,10 @@ class Results extends Component {
                                     </Media> 
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                        <Button color="primary" className="">
+                                        <Button color="primary" onClick={this.handleAdd} className="">
                                             + info
                                         </Button><br/>
-                                        <Button color="primary" className="">
+                                        <Button color="primary" onClick={this.handleAdd} className="">
                                             Adicionar
                                         </Button>
                                 </div>
