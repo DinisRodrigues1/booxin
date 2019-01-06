@@ -45,7 +45,7 @@ class Search extends Component {
                     <FormGroup>
                         <Input 
                             type="text"
-                            placeholder="Escolha um livro"
+                            placeholder="Escolha u 🔍m livro"
                             bsSize="lg"
                             onChange={(e)=>this.handleChange(e)} />
                     </FormGroup>
