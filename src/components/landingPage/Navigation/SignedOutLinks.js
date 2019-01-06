@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavLink as NLink } from 'react-router-dom'
-import { NavLink, Nav, NavItem } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { Button, Nav, NavItem } from 'reactstrap'
 
 
 const SignedOutLinks = () => {
@@ -9,11 +9,15 @@ const SignedOutLinks = () => {
     
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink><NLink to="/sobre">Sobre </NLink></NavLink>
+              <Button outline color="primary">
+                <Link to="/sobre">Sobre</Link>
+              </Button>
             </NavItem>
-            
+  
             <NavItem>
-              <NavLink><NLink to="/login"> Login</NLink></NavLink>
+              <Button outline color="primary">
+                <Link to="/login">Login</Link>
+              </Button>
             </NavItem>              
           </Nav>
     
