@@ -45,6 +45,30 @@ const authReducer = (state = initState, action) => {
             ...state,
             authError: action.error.message
         }
+        case 'SIGNIN_GOOGLE_SUCCESS':
+        console.log('success????')
+        return {
+            ...state,
+            authError: null
+        }
+        case 'SIGNIN_GOOGLE_ERROR':
+        console.log('ERORRRRSR?')
+        return {
+            ...state,
+            authError: action.error.message
+        }
+        case 'SIGNIN_TWITTER_SUCCESS':
+        console.log('success????')
+        return {
+            ...state,
+            authError: null
+        }
+        case 'SIGNIN_TWITTER_ERROR':
+        console.log('ERORRRRSR?')
+        return {
+            ...state,
+            authError: action.error.message
+        }
         default: 
             return state
     }

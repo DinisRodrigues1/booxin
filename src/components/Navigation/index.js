@@ -30,7 +30,7 @@ class Navigation extends React.Component {
         render() {
           const { auth, profile } = this.props
           // console.log(auth)
-          const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />
+          const links = auth.uid ? <SignedInLinks profile={profile} auth={auth} /> : <SignedOutLinks />
           return (
             <Fragment>
               <Navbar color="light" dark expand="md">

@@ -56,21 +56,21 @@ export const signUpFacebook = () => {
         
         // The signed-in user info.
         var user = result.user.displayName;
-        console.log(user)
+        
         // ...
       }).then(() =>
             dispatch({type: 'SIGNIN_FACE_SUCCESS'}))
-      .catch(error => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        dispatch({ type: 'SIGNIN_FACE_ERROR', error})
-        // ...
-      });
+        .catch(error => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            dispatch({ type: 'SIGNIN_FACE_ERROR', error})
+            // ...
+        });
     } 
 } 
 
@@ -83,16 +83,19 @@ export const signUpTwitter = () => {
         // The signed-in user info.
         var user = result.user;
         // ...
-      }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-      });
+      }).then(() =>
+            dispatch({type: 'SIGNIN_TWITTER_SUCCESS'}))
+        .catch(error => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            dispatch({ type: 'SIGNIN_TWITTER_ERROR', error})
+            // ...
+        });
     } 
 } 
 
@@ -105,16 +108,19 @@ export const signUpGoogle = () => {
         // The signed-in user info.
         var user = result.user;
         // ...
-      }).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-      });
+      }).then(() =>
+            dispatch({type: 'SIGNIN_GOOGLE_SUCCESS'}))
+        .catch(error => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            dispatch({ type: 'SIGNIN_GOOGLE_ERROR', error})
+            // ...
+        });
     } 
 } 
 /* CHANGE PASSWORD */

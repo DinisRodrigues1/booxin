@@ -24,7 +24,8 @@ class Login extends Component {
     }
     facebookLogin = (e) => {
         e.preventDefault()
-        this.props.signUpFacebook()
+        this.props.signUpFacebook(this.state)
+        console.log('state is' + this.state)
     }
     googleLogin = (e) => {
         e.preventDefault()
@@ -78,7 +79,7 @@ class Login extends Component {
                     <Button className="mb-4" color="info btn-md btn-block" onClick={this.twitterLogin}>Twitter</Button>
                 </p>
                 <p>
-                    <Button color="danger btn-md btn-block" onClick={this.googleLogin}>G-mail</Button>
+                    <Button color="danger btn-md btn-block" onClick={this.googleLogin}>Google</Button>
                 </p>
                 </Jumbotron></Col>
                 </Row>
@@ -91,16 +92,16 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         authError: state.auth.authError,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn: (creds) => dispatch(signIn(creds)),
-        signUpFacebook: () => dispatch(signUpFacebook()),
-        signUpGoogle,
-        signUpTwitter
+        signUpFacebook: (creds) => dispatch(signUpFacebook(creds)),
+        signUpGoogle: (creds) => dispatch(signUpGoogle(creds)),
+        signUpTwitter: (creds) => dispatch(signUpTwitter(creds))
     }
 }
 

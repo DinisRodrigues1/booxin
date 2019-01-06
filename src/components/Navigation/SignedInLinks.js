@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { signOut } from '../Login/authActions'
 
 const SignedInLinks = (props) => {
+  console.log(props)
     return (
         <React.Fragment>
           <Nav className="ml-auto" navbar>
@@ -12,7 +13,7 @@ const SignedInLinks = (props) => {
               <NavLink><NLink to="/sobre">Sobre</NLink></NavLink>
             </NavItem> 
             <NavItem>
-              <NavLink><NLink to="/userpage">{props.profile.userName}</NLink></NavLink>
+    <NavLink>{props.profile.userName ?<NLink to="/userpage">{props.profile.userName}</NLink>:<NLink to="/userpage">{props.auth.displayName}</NLink>}</NavLink>
             </NavItem> 
             <NavItem>
               <NavLink><NLink to="/" onClick={props.signOut}>Logout</NLink></NavLink>
