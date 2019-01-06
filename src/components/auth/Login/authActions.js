@@ -8,9 +8,9 @@ export const signIn = (credentials) => {
             credentials.email,
             credentials.password
         ).then(() => {
-            dispatch ({ type: 'LOGIN_SUCCESS'})
+            dispatch ({ type: 'LOGIN_SUCCESS' })
         }).catch((err) => {
-            dispatch({ type: 'LOGIN_ERROR', err})
+            dispatch({ type: 'LOGIN_ERROR', err })
         })
     }
 }
@@ -41,7 +41,7 @@ export const signUp = (newUser) => {
         }).then(() => {
             dispatch({ type: 'SIGNUP_SUCCESS' })
         }).catch(err =>{
-            dispatch({ type: 'SIGNUP_ERROR', err})
+            dispatch({ type: 'SIGNUP_ERROR', err })
         })
     }
 }
@@ -59,7 +59,7 @@ export const signUpFacebook = () => {
         
         // ...
       }).then(() =>
-            dispatch({type: 'SIGNIN_FACE_SUCCESS'}))
+            dispatch({ type: 'SIGNIN_FACE_SUCCESS' }))
         .catch(error => {
             // Handle Errors here.
             var errorCode = error.code;
@@ -68,7 +68,7 @@ export const signUpFacebook = () => {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            dispatch({ type: 'SIGNIN_FACE_ERROR', error})
+            dispatch({ type: 'SIGNIN_FACE_ERROR', error })
             // ...
         });
     } 
@@ -77,14 +77,14 @@ export const signUpFacebook = () => {
 export const signUpTwitter = () => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
-    firebase.auth().signInWithPopup(twitterProvider).then(function(result) {
+    firebase.auth().signInWithPopup(twitterProvider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
         // ...
       }).then(() =>
-            dispatch({type: 'SIGNIN_TWITTER_SUCCESS'}))
+            dispatch({ type: 'SIGNIN_TWITTER_SUCCESS' }))
         .catch(error => {
             // Handle Errors here.
             var errorCode = error.code;
@@ -93,7 +93,7 @@ export const signUpTwitter = () => {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            dispatch({ type: 'SIGNIN_TWITTER_ERROR', error})
+            dispatch({ type: 'SIGNIN_TWITTER_ERROR', error })
             // ...
         });
     } 
@@ -102,14 +102,14 @@ export const signUpTwitter = () => {
 export const signUpGoogle = () => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
-    firebase.auth().signInWithPopup(googleProvider).then(function(result) {
+    firebase.auth().signInWithPopup(googleProvider).then((result) => {
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
         // ...
       }).then(() =>
-            dispatch({type: 'SIGNIN_GOOGLE_SUCCESS'}))
+            dispatch({ type: 'SIGNIN_GOOGLE_SUCCESS' }))
         .catch(error => {
             // Handle Errors here.
             var errorCode = error.code;
@@ -118,15 +118,29 @@ export const signUpGoogle = () => {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            dispatch({ type: 'SIGNIN_GOOGLE_ERROR', error})
+            dispatch({ type: 'SIGNIN_GOOGLE_ERROR', error })
             // ...
         });
     } 
-} 
+}
+
+export const changePw = (credentials) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+        var auth = firebase.auth()
+        var emailAddress = credentials.email
+    auth.sendPasswordResetEmail(emailAddress).then(() => {
+        // Email sent.
+        dispatch({ type: 'PW_CHANGE_SUCCESS' })
+        }).catch(function(error) {
+        // An error happened.
+        dispatch({ type: 'PW_CHANGE_ERROR', error })
+        });
+    }
+}
 /* CHANGE PASSWORD */
 /*
-var auth = firebase.auth();
-var emailAddress = "user@example.com";
+
 
 auth.sendPasswordResetEmail(emailAddress).then(function() {
   // Email sent.
