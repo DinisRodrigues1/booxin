@@ -2,16 +2,18 @@ import React, { Component, Fragment } from 'react'
 import './Home.scss'
 import { Container, Row, Col } from 'reactstrap'
 import Search from '../Search'
-import books from '../../assets/pics/bg.png'
 
 class Home extends Component{
     render(){
         return(
             <Fragment>
-                <img 
+                <div className="background">
+                    <Search className="search" history={this.props.history}/>
+                </div>
+                {/* <img 
                     src={books} 
                     className="imgStyle"
-                    alt="A pile of books" />
+                    alt="A pile of books" /> */}
                 <Container className="marginTB">
                 <Row>
                     <Col xs="6" className="justified">
@@ -22,8 +24,6 @@ class Home extends Component{
                     </Col>
                 </Row>
                 </Container>
-                <h1 className="justify-content-center">Experimente!</h1>
-                <Search history={this.props.history}/>
             </Fragment>
         )
     }

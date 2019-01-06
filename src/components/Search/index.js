@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import {Form, FormGroup, Input, Button} from 'reactstrap'
 import './Search.scss'
 import { connect } from 'react-redux'
-import icon from '../../assets/logo/brand.png'
-
 
 const axios = require('axios')
 
@@ -40,12 +38,10 @@ class Search extends Component {
             })
     }
         
-    
-
     render() {
         return (
             <Fragment>
-                <Form inline className="justify-content-center margin" onSubmit={this.handleClick} color="link">
+                <Form inline className="justify-content-center search" onSubmit={this.handleClick} color="link">
                     <FormGroup>
                         <Input 
                             type="text"
@@ -54,8 +50,8 @@ class Search extends Component {
                             onChange={(e)=>this.handleChange(e)} />
                     </FormGroup>
                     <FormGroup>
-                        <Button type="submit">
-                            <img src={icon} className="imgMargin"/>
+                        <Button type="submit" className="btn btn-lg btn-light leftMargin">
+                            🔍
                         </Button>
                     </FormGroup>
                 </Form>
