@@ -5,6 +5,7 @@ import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
 import { Link } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
+import { addToLibrary } from '../../user/UserPage/libraryActions'
 
 
 const itemsPerPage = 5
@@ -14,9 +15,9 @@ class Results extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            activePage: 1,
-            author_name: ''
+            activePage: 1
         };
+        
 
              
     }
@@ -29,15 +30,10 @@ class Results extends Component {
     }
 
     handleAdd = (e) => {
-        
-    
+        this.props.addToLibrary(e.target.id)
+        console.log(this.state)
         console.log('data added')
         
-       /* this.setState({
-            author_name: mapdata.title.author_name
-            
-        }) 
-        console.log(this.state.author_name)*/
     }
 
     render(){
@@ -64,7 +60,7 @@ class Results extends Component {
                     {this.props.search ? 
                       mapdata = itemsShown.map((title) => (
                         <div className="d-xl-flex">
-                            <Media className="mt-1 flex-row justify-content-around">
+                            <Media className="mt-1 flex-row justify-content-around" >
                                 <div className="d-flex justify-content-center">
                                     <Media left middle href="" className="cover">
                                     {title.isbn[0] ? 
@@ -82,12 +78,12 @@ class Results extends Component {
                                     </Media> 
                                 </div>
                                 <div className="d-flex justify-content-center">
-                                        <Button color="primary" onClick={this.handleAdd} className="">
+                                        <Button color="primary" className="">
                                             + info
                                         </Button><br/>
-                                        {auth.isEmpty ? <Link to='/login'><Button color="primary" onClick={this.handleAdd} className="">
+                                        {auth.isEmpty ? <Link to='/login'><Button color="primary" id={title.isbn[0]}  className="">
                                             Adicionar
-                                        </Button></Link> : <Button color="primary" onClick={this.handleAdd} className="">
+                                        </Button></Link> : <Button color="primary" id={title.isbn[0]} onClick={this.handleAdd} className="">
                                             Adicionar
                                         </Button>}
                                         
@@ -109,11 +105,18 @@ class Results extends Component {
 }
 
 //this.props.search.value.data
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        search: state.search,
-        auth: state.firebase.auth
+        addToLibrary: (book) => dispatch(addToLibrary(book))
     }
 }
 
-export default connect(mapStateToProps)(Results)
+const mapStateToProps = (state) => {
+    return {
+        search: state.search,
+        auth: state.firebase.auth,
+        book_isbn: state.book_isbn
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results)
