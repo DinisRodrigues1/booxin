@@ -32,9 +32,9 @@ const SignedInLinks = (props) => {
                     </DropdownToggle>
                     <DropdownMenu right>
                       <Link to="/biblioteca" style={{ textDecoration: 'none' }}>
-                        <NavLink><DropdownItem>
+                        <DropdownItem>
                           Biblioteca
-                        </DropdownItem></NavLink>
+                        </DropdownItem>
                       </Link>
                       <Link to="/painel" style={{ textDecoration: 'none' }}>
                         <DropdownItem>
@@ -45,7 +45,23 @@ const SignedInLinks = (props) => {
                   </UncontrolledDropdown>
                   :
                   <NavLink>
-                    {props.auth.displayName}
+                    <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav caret>
+                        {props.auth.displayName}
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <Link to="/biblioteca" style={{ textDecoration: 'none' }}>
+                          <DropdownItem>
+                            Biblioteca
+                          </DropdownItem>
+                        </Link>
+                        <Link to="/painel" style={{ textDecoration: 'none' }}>
+                          <DropdownItem>
+                            Painel de controlo
+                          </DropdownItem>
+                        </Link>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
                   </NavLink>
                 }
             </NavItem> 
