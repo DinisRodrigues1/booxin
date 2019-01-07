@@ -3,8 +3,21 @@
     max-width: 80%;
 }
 
+.box {
+    min-width: 20vw;
+    min-height: 10vh;
+}
+
+.box-info {
+    min-width: 50vw;
+    min-height: 10vh;
+}
+
 .cover{
-    justify-content: center
+    display: block;
+    justify-content: center;
+    max-width: 120px;
+    max-height: 178px;
 }
 
 .info {
