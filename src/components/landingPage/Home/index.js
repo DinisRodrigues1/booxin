@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './Home.scss'
 import { Container, Row, Col } from 'reactstrap'
-import Search from '../../search_result/Search'
+import Search from '../../search/Search'
 
 
 class Home extends Component{

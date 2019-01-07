@@ -33,7 +33,7 @@ class Navigation extends React.Component {
           const links = auth.uid ? <SignedInLinks profile={profile} auth={auth} /> : <SignedOutLinks />
           return (
             <Fragment>
-              <Navbar color="light" dark expand="md">
+              <Navbar color="light" light expand="md">
                 <NavbarBrand>
                   <Link to="/">
                     <img src={brand} alt="boox brand logo"/>
