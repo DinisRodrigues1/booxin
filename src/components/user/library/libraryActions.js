@@ -1,10 +1,12 @@
+import firebase from '../../../../node_modules/firebase'
+
 export const addToLibrary = (book) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
 
         const firestore = getFirestore();
-        const profile = getState().firebase.profile.userName;
-        const authorId = getState().firebase.auth.uid;
-        const displayName = getState().firebase.auth.displayName;
+        const profile = getState().firebase.profile.userName
+        const authorId = getState().firebase.auth.uid
+        const displayName = getState().firebase.auth.displayName
 
         if (profile != undefined) {
         firestore.collection('books').add({
@@ -29,5 +31,40 @@ export const addToLibrary = (book) => {
             dispatch({ type: 'ADD_TO_LIBRARY_ERROR', err })
         })
     }
+    }
+}
+
+export const getUserBooks = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+
+        const firebase = getFirebase()
+        const firestore = getFirestore()
+        const user = firebase.auth().currentUser
+        const some = firebase.auth()
+        console.log(user)
+        console.log(some)
+        const profile = getState().firebase.profile.userName
+        let name, email, uid
+
+        if (user.displayName != null) {
+            name = user.displayName
+            email = user.email
+            uid = user.uid
+            console.log(name, email, uid)
+        }
+        else {
+            uid = user.uid
+            email = user.email
+          /*  firebase.database.ref('users/' + uid).once('value').then((snapshot) => {
+                name = (snapshot.val() && snapshot.val().userName) || 'Anonymous'
+            })*/
+            
+              
+            
+            
+            
+            console.log(email, uid, profile)
+        }
+          
     }
 }

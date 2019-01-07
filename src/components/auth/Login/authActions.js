@@ -127,8 +127,8 @@ export const signUpGoogle = () => {
 export const changePw = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
-        var auth = firebase.auth()
-        var emailAddress = credentials.email
+        const auth = firebase.auth()
+        const emailAddress = credentials.email
     auth.sendPasswordResetEmail(emailAddress).then(() => {
         // Email sent.
         dispatch({ type: 'PW_CHANGE_SUCCESS' })
@@ -138,13 +138,3 @@ export const changePw = (credentials) => {
         });
     }
 }
-/* CHANGE PASSWORD */
-/*
-
-
-auth.sendPasswordResetEmail(emailAddress).then(function() {
-  // Email sent.
-}).catch(function(error) {
-  // An error happened.
-});
-*/

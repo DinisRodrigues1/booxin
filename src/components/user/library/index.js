@@ -3,9 +3,11 @@ import './library.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { addToLibrary } from './libraryActions'
+import { getUserBooks } from './libraryActions'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 
 const itemsPerPage = 5
@@ -21,12 +23,14 @@ class Library extends Component {
              
     }
     componentDidMount() {
-        
+        this.props.getUserBooks()
+
     }
 
     render(){
         const { auth } = this.props
-        var arr = Object.values(this.props.search)
+        if (!auth.uid) return <Redirect to="/" />
+     /*   var arr = Object.values(this.props.search)
         window.localStorage.setItem('show', JSON.stringify(arr))
         let storage = window.localStorage.getItem('show')
         let usage = JSON.parse(storage)
@@ -39,7 +43,7 @@ class Library extends Component {
           indexOfFirstThing,
           indexOfLastThing
         );
-
+*/
         return(
             <Fragment> 
             
@@ -47,9 +51,9 @@ class Library extends Component {
                             <Pagination
                                 activePage={this.state.activePage}
                                 itemsCountPerPage={10}
-                                totalItemsCount={arr[0].length}
+                                //totalItemsCount={arr[0].length}
                                 pageRangeDisplayed={5}
-                                onChange={this.handlePageChange.bind(this)}
+                               // onChange={this.handlePageChange.bind(this)}
                                 />
                         </Page>
               </Fragment>
@@ -57,6 +61,7 @@ class Library extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         search: state.search,
         auth: state.firebase.auth
@@ -65,9 +70,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addToLibrary: (book) => dispatch(addToLibrary(book))
+        getUserBooks: () => dispatch(getUserBooks())
     }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Library)
+export default compose(connect(mapStateToProps, mapDispatchToProps), 
+firestoreConnect([
+    { collection: 'users' }
+]))(Library)
