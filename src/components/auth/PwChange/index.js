@@ -21,7 +21,8 @@ class PwChange extends Component {
     }
     
     render() {
-        const { authError, auth } = this.props
+        const { auth, authError } = this.props
+        console.log(auth)
         if (auth.uid) return <Redirect to='/' />
         return(
             <Fragment>
