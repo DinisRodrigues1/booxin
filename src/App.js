@@ -15,8 +15,6 @@ import PwChange from './components/auth/PwChange';
 
 class App extends Component {
   render() {
-
-    
     return (
       <Router>
         <Switch>

@@ -32,7 +32,7 @@ class Results extends Component {
         const { auth } = this.props
         console.log('data added')
         if (!auth.uid) return <Redirect to='/login' />
-       /* this.setState({
+        /* this.setState({
             author_name: mapdata.title.author_name
             
         }) 
@@ -54,42 +54,38 @@ class Results extends Component {
           indexOfFirstThing,
           indexOfLastThing
         );
-        
-        var mapdata
 
         return(
             <Fragment> 
                 <h1>Results:</h1>
                     {this.props.search ? 
-                      mapdata = itemsShown.map((title) => (
-                        <div className="d-xl-flex">
-                            <Media className="mt-1 flex-row justify-content-around">
-                                <div className="d-flex justify-content-center">
-                                    <Media left middle href="" className="cover">
-                                    {title.isbn[0] ? 
-                                        <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt={title.title} className="size"/>
-                                        : title.isbn[1]}
+                      itemsShown.map((title) => (
+                        <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">
+                            <div className="flex-column flex-grow-1">
+                                <Media left middle href="" className="cover">
+                                {title.isbn[0] ? 
+                                    <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt={title.title} className="size"/>
+                                    : title.isbn[1]}
+                                </Media>
+                            </div>
+                            <div className="flex-column flex-grow-2">
+                                <Media body className="info text-center">
+                                    <Media heading>
+                                        Autor: {title.author_name}
                                     </Media>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <Media body className="info text-center">
-                                        <Media heading>
-                                            Autor: {title.author_name}
-                                        </Media>
-                                            <p>Título: {title.title}</p>
-                                            {title.publisher[1] ? <p>Editora: {title.publisher[0] +", " + title.publisher[1] + ", entre outras."}</p> : <p>Editora: {title.publisher[0]}</p>}
-                                    </Media> 
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                        <Button color="primary" onClick={this.handleAdd} className="">
-                                            + info
-                                        </Button><br/>
-                                        <Button color="primary" onClick={this.handleAdd} className="">
-                                            Adicionar
-                                        </Button>
-                                </div>
-                            </Media>
-                        </div>     
+                                        <p>Título: {title.title}</p>
+                                        {title.publisher[1] ? <p>Editora: {title.publisher[0] +", " + title.publisher[1] + ", entre outras."}</p> : <p>Editora: {title.publisher[0]}</p>}
+                                </Media> 
+                            </div>
+                            <div className="flex-column flex-grow-1">
+                                    <Button color="primary" onClick={this.handleAdd} className="button">
+                                        + info
+                                    </Button><br/>
+                                    <Button color="primary" onClick={this.handleAdd} className="button">
+                                        Adicionar
+                                    </Button>
+                            </div>
+                        </Media>
                          )) : `Erro de pesquisa`}
                         <Page>
                             <Pagination
