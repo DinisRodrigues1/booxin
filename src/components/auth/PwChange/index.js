@@ -2,11 +2,22 @@ import React, { Fragment, Component } from 'react'
 import {Jumbotron, Button, Col, Form, FormGroup, Label, Input, Alert} from 'reactstrap'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { signUp } from '../Login/authActions'
+import { changePw } from '../Login/authActions'
 
 class PwChange extends Component {
     state = {
         email: ''
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.changePw(this.state)
     }
     
     render() {
@@ -24,8 +35,8 @@ class PwChange extends Component {
                         <Input type="email" name="email" id="email" onChange={this.handleChange} placeholder="Email" />
                     </FormGroup>
                 <FormGroup>
-                <Button className="mt-3" type="submit" color="primary">Redefinir Password</Button>
-                <div>{ authError ? <Alert color="danger">{authError}</Alert>: null}</div>
+                <Button className="mt-3" type="submit" color="danger">Redefinir Password</Button>
+                <div>{ authError ? <Alert color="danger" className="mt-4">{authError}</Alert>: null}</div>
                 </FormGroup>
                 </Form>   
                 </div> 
@@ -46,10 +57,7 @@ const mapStateToProps = (state) => {
     
 const mapDispatchToProps = (dispatch) => {
     return {
-       signUp: (creds) => dispatch(signUp(creds)),
-       // signUpFacebook: (creds) => dispatch(signUpFacebook(creds)),
-       // signUpGoogle: (creds) => dispatch(signUpGoogle(creds)),
-       // signUpTwitter: (creds) => dispatch(signUpTwitter(creds))
+       changePw: (creds) => dispatch(changePw(creds))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PwChange)
