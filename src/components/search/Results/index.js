@@ -97,13 +97,6 @@ class Results extends Component {
         )}
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addToLibrary: (book) => dispatch(addToLibrary(book))
-    }
-}
-
-
 const mapStateToProps = (state) => {
     return {
         search: state.search,
@@ -111,4 +104,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapDispatchToProps, mapStateToProps)(Results)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToLibrary: (book) => dispatch(addToLibrary(book))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results)
