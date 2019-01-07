@@ -13,28 +13,34 @@ class Login extends Component {
         user: '',
         name: ''
     }
+
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
+
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.signIn(this.state)
     }
+
     facebookLogin = (e) => {
         e.preventDefault()
         this.props.signUpFacebook(this.state)
         console.log('state is' + this.state)
     }
+
     googleLogin = (e) => {
         e.preventDefault()
         this.props.signUpGoogle(this.state)
     }
+
     twitterLogin = (e) => {
         e.preventDefault()
         this.props.signUpTwitter(this.state)
     }
+    
     render(){
         const { authError, auth } = this.props
         if (auth.uid) return <Redirect to="/" /> // IMPLEMENT CHANGE PASSWORD AND FORGOT PASSWORD
@@ -66,7 +72,7 @@ class Login extends Component {
                 <hr className="my-2" />
                 <p>Ainda não tem conta?</p>
                 <p className="lead">
-                <Link to="/register"><Button color="secondary">Registe-se</Button></Link>
+                <Link to="/registo"><Button color="secondary">Registe-se</Button></Link>
                 </p>
                 </Jumbotron></Col>
     

@@ -1,25 +1,72 @@
-import React from 'react'
-import { NavLink as NLink } from 'react-router-dom'
-import { NavLink, Nav, NavItem } from 'reactstrap'
+import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import { 
+  NavLink, 
+  Nav, 
+  NavItem, 
+  UncontrolledDropdown, 
+  DropdownToggle, 
+  DropdownMenu,
+  DropdownItem } from 'reactstrap'
 import { connect } from 'react-redux'
 import { signOut } from '../../auth/Login/authActions'
 
 const SignedInLinks = (props) => {
   console.log(props)
     return (
-        <React.Fragment>
+        <Fragment>            
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink><NLink to="/sobre">Sobre</NLink></NavLink>
-            </NavItem> 
+                <Link to="/acervo" style={{ textDecoration: 'none' }}>
+                  <NavLink>
+                    Acervo
+                  </NavLink>
+                </Link>
+            </NavItem>
+            
             <NavItem>
-    <NavLink>{props.profile.userName ?<NLink to="/userpage">{props.profile.userName}</NLink>:<NLink to="/userpage">{props.auth.displayName}</NLink>}</NavLink>
+                { props.profile.userName ? 
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      {props.profile.userName}
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <Link to="/biblioteca" style={{ textDecoration: 'none' }}>
+                        <NavLink><DropdownItem>
+                          Biblioteca
+                        </DropdownItem></NavLink>
+                      </Link>
+                      <Link to="/painel" style={{ textDecoration: 'none' }}>
+                        <DropdownItem>
+                          Painel de controlo
+                        </DropdownItem>
+                      </Link>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  :
+                  <NavLink>
+                    {props.auth.displayName}
+                  </NavLink>
+                }
             </NavItem> 
+            
             <NavItem>
-              <NavLink><NLink to="/" onClick={props.signOut}>Logout</NLink></NavLink>
+              <Link to="/sobre" style={{ textDecoration: 'none' }}>
+                <NavLink>
+                  Sobre
+                </NavLink>
+              </Link>
+            </NavItem>
+
+            <NavItem>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <NavLink onClick={props.signOut}>
+                  Logout
+                </NavLink>
+              </Link>
             </NavItem>              
           </Nav>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

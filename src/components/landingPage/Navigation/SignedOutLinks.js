@@ -1,27 +1,36 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Nav, NavItem } from 'reactstrap'
-
+import { Nav, NavLink, NavItem } from 'reactstrap'
 
 const SignedOutLinks = () => {
     return (
-        <React.Fragment>
-    
+        <Fragment>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <Button outline color="primary">
-                <Link to="/sobre">Sobre</Link>
-              </Button>
+                <Link to="/acervo" style={{ textDecoration: 'none' }}>
+                  <NavLink>
+                    Acervo
+                  </NavLink>
+                </Link>
+            </NavItem>
+
+            <NavItem>
+                <Link to="/sobre" style={{ textDecoration: 'none' }}>
+                  <NavLink>
+                    Sobre
+                  </NavLink>
+                </Link>
             </NavItem>
   
             <NavItem>
-              <Button outline color="primary">
-                <Link to="/login">Login</Link>
-              </Button>
+              <Link to="/login" style={{ textDecoration: 'none' }}>
+                <NavLink>
+                    Login
+                </NavLink>
+              </Link>
             </NavItem>              
           </Nav>
-    
-        </React.Fragment>
+        </Fragment>
     )
 }
 

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import searchReducer from './components/search_result/Search/reducer'
+import searchReducer from './components/search/Search/reducer'
 import authReducer from './components/auth/Login/authReducer'
 import { firestoreReducer } from 'redux-firestore'
 import { firebaseReducer } from 'react-redux-firebase'
