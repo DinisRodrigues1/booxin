@@ -9,9 +9,12 @@ import About from './components/landingPage/About'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import UserPage from './components/user/UserPage'
+import PwChange from './components/auth/PwChange'
+import Library from './components/user/library'
 import { connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import PwChange from './components/auth/PwChange';
+
+
 
 class App extends Component {
   render() {
@@ -27,6 +30,7 @@ class App extends Component {
             <Route path="/registo" component={Register} />
             <Route path="/painel" component={UserPage} />
             <Route path="/passwordreset" component={PwChange} />
+            <Route path="/biblioteca" component={Library} />
             <Footer/>
           </div>
         </Switch>

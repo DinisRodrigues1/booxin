@@ -5,7 +5,7 @@ import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
 import { Link } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { addToLibrary } from '../../user/UserPage/libraryActions'
+import { addToLibrary } from '../../user/library/libraryActions'
 
 
 const itemsPerPage = 5
