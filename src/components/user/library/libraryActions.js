@@ -1,5 +1,3 @@
-import firebase from '../../../../node_modules/firebase'
-
 export const addToLibrary = (book) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
 
@@ -40,9 +38,6 @@ export const getUserBooks = () => {
         const firebase = getFirebase()
         const firestore = getFirestore()
         const user = firebase.auth().currentUser
-        const some = firebase.auth()
-        console.log(user)
-        console.log(some)
         const profile = getState().firebase.profile.userName
         let name, email, uid
 
@@ -50,21 +45,19 @@ export const getUserBooks = () => {
             name = user.displayName
             email = user.email
             uid = user.uid
+            
             console.log(name, email, uid)
+            dispatch({ type: 'USER_DATA_SUCCESS' })
         }
         else {
             uid = user.uid
             email = user.email
-          /*  firebase.database.ref('users/' + uid).once('value').then((snapshot) => {
-                name = (snapshot.val() && snapshot.val().userName) || 'Anonymous'
-            })*/
-            
-              
-            
-            
             
             console.log(email, uid, profile)
+            dispatch({ type: 'USER_DATA_SUCCESS' })
+            
         }
+        
           
     }
 }
