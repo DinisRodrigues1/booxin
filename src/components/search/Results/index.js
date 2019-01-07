@@ -73,14 +73,29 @@ class Results extends Component {
                                 </Media> 
                             </div>
                             <div className="flex-column flex-grow-1">
-                                    <Button color="primary" onClick={this.handleAdd} className="button">
+                                <Button 
+                                    color="primary" 
+                                    onClick={this.handleAdd} 
+                                    className="button">
                                         + info
-                                    </Button><br/>
-                                    {auth.isEmpty ? <Link to='/login'><Button color="primary" id={title.isbn[0]}  className="">
+                                </Button><br/>
+                                {auth.isEmpty ? 
+                                    <Link to='/login'>
+                                        <Button 
+                                            color="primary" 
+                                            id={title.isbn[0]}  
+                                            className="">
                                             Adicionar
-                                        </Button></Link> : <Button color="primary" id={title.isbn[0]} onClick={this.handleAdd} className="">
+                                        </Button>
+                                    </Link> 
+                                    : 
+                                    <Button 
+                                        color="primary" 
+                                        id={title.isbn[0]} 
+                                        onClick={this.handleAdd} 
+                                        className="">
                                             Adicionar
-                                        </Button>}
+                                    </Button>}
                             </div>
                         </Media>
                          )) : `Erro de pesquisa`}
