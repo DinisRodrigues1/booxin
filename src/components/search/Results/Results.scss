@@ -32,3 +32,16 @@
 .button {
     margin: 5px
 }
+
+.pagination {
+    display: inline-block;
+    margin-top: 10vh;
+    justify-content: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}

@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import './Results.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
-import { Pagination as Page } from "reactstrap"
 import { Link } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
 import { addToLibrary } from '../../user/library/libraryActions'
@@ -95,16 +94,18 @@ class Results extends Component {
                                     </Button>}
                             </div>
                         </Media>
-                         )) : `Erro de pesquisa`}
-                        <Page>
+                        )) : `Erro de pesquisa`}
+                        <nav>
                             <Pagination
                                 activePage={this.state.activePage}
                                 itemsCountPerPage={10}
                                 totalItemsCount={arr[0].length}
                                 pageRangeDisplayed={5}
                                 onChange={this.handlePageChange.bind(this)}
-                                />
-                        </Page>
+                                onClick={() => {window.scrollTop()}}
+                                className="pagination"
+                            />
+                        </nav>
               </Fragment>
         )}
 }
