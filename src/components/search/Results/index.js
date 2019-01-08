@@ -37,15 +37,11 @@ class Results extends Component {
     render(){
         const { auth } = this.props
         var arr = Object.values(this.props.search)
-        window.localStorage.setItem('show', JSON.stringify(arr))
-        let storage = window.localStorage.getItem('show')
-        let usage = JSON.parse(storage)
-        console.log(storage)
         const indexOfLastThing = this.state.activePage * itemsPerPage;
         const indexOfFirstThing = indexOfLastThing - itemsPerPage;
         // For page 1, you will get things.slice(0, 5).
         // For page 2, you will get things.slice(5, 10).
-        const itemsShown = usage[0].slice(
+        const itemsShown = arr[0].slice(
           indexOfFirstThing,
           indexOfLastThing
         );
@@ -55,6 +51,7 @@ class Results extends Component {
                 <h3 className="align-left">Resultados:</h3><hr/>
                     {this.props.search ? 
                       itemsShown.map((title) => (
+                          
                         <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">
                             <div className="flex-column flex-grow-1">
                                 <Media left middle href="" className="cover">
@@ -63,6 +60,7 @@ class Results extends Component {
                                     : title.isbn[1]}
                                 </Media>
                             </div>
+                          
                             <div className="flex-column flex-grow-2">
                                 <Media body className="info text-center">
                                     <Media heading>
@@ -83,7 +81,7 @@ class Results extends Component {
                                     <Link to='/login'>
                                         <Button 
                                             color="primary" 
-                                            id={title.isbn[0]}  
+                                            id={title.isbn[1]}  
                                             className="">
                                             Adicionar
                                         </Button>
@@ -91,14 +89,14 @@ class Results extends Component {
                                     : 
                                     <Button 
                                         color="primary" 
-                                        id={title.isbn[0]} 
+                                        id={title.isbn[0]}
                                         onClick={this.handleAdd} 
                                         className="">
                                             Adicionar
                                     </Button>}
                             </div>
                         </Media>
-                         )) : `Erro de pesquisa`}
+                         )) : <h1>`Erro de pesquisa`</h1>}
                         <Page>
                             <Pagination
                                 activePage={this.state.activePage}

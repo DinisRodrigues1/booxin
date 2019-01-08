@@ -138,10 +138,10 @@ class Library extends Component {
                     name: response.data['ISBN:'+info].details.title,
                     cover: response.data['ISBN:'+info].details.covers,
                     publishers: response.data['ISBN:'+info].details.publishers,
-                    isbn: response.data['ISBN:'+info].details.isbn_10
+                    isbn: response.data['ISBN:'+info].details.isbn_10[0]
                 }
-
-                books.push(book);
+                console.log(book.isbn)
+                books.push(book);  
                 this.setState({books:books});
             }).catch((err) =>{
                   console.log(err)
