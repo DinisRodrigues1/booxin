@@ -8,6 +8,7 @@ import { Media, Button } from 'reactstrap'
 import { getUserBooks } from './libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import axios from 'axios';
 
 
 const itemsPerPage = 5
@@ -28,23 +29,47 @@ class Library extends Component {
     }
 
     render(){
-        const { auth, books } = this.props
+        const { auth } = this.props
+        const profile = this.props.profile
+        console.log(this.props.profile)
+        console.log()
         console.log(this.props.books)
+        let nameOf = ''
         if (!auth.uid) return <Redirect to="/" />
         var arr = this.props.books
         const indexOfLastThing = this.state.activePage * itemsPerPage;
         const indexOfFirstThing = indexOfLastThing - itemsPerPage;
         // For page 1, you will get things.slice(0, 5).
         // For page 2, you will get things.slice(5, 10).
-
+        const filter = arr && arr.filter((book) =>{
+            if (auth.displayName != null) {
+                nameOf = auth.displayName
+                return book.displayName == nameOf
+            }
+            else {
+                console.log("this is user" + book.user)
+                nameOf = profile.userName
+                return book.user == nameOf
+    
+            }
+            
+        
+        })
+        const query = filter && filter.map((isbn) => {
+            console.log(isbn.book_isbn)
+        }).then(axios)
+        
 
         return(
             <Fragment> 
-                      {arr && arr.map((title) => (
+                      {filter && filter.map((title) => (
                         <Fragment>
+                            {title.displayName ? 
+                        <h2>{`Livros do ${title.displayName}`}</h2> :
+                        <h2>{`Livros do ${title.user}`}</h2> }
                         <div>{title.id}</div>
                         <div>{title.book_isbn}</div>
-                        <div>{title.displayName}</div>
+                        
                         </Fragment>
                     ))}
               
@@ -66,7 +91,8 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         auth: state.firebase.auth,
-        books: state.firestore.ordered.books
+        books: state.firestore.ordered.books,
+        profile: state.firebase.profile
     }
 }
 
