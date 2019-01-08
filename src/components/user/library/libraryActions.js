@@ -52,9 +52,8 @@ export const getUserBooks = () => {
         else {
             uid = user.uid
             email = user.email
-            userName = profile
 
-            console.log(email, uid, userName)
+            console.log(email, uid, profile)
             dispatch({ type: 'USER_DATA_SUCCESS' })
         }
         
