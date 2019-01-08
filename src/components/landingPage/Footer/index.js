@@ -7,12 +7,16 @@ const Footer = () => {
         <div className="footer">
             <Container>
                 <Row>
-                    <Col className="col">There's some info in here</Col>
+                    <Col>
+                        Projeto realizado no âmbito da UC Laboratório Multimédia 5<br/>
+                        Universidade de Aveiro - 2018
+                    </Col>    
+                    <Col>
+                        Trabalho realizado por:<br/>
+                        <a href="https://github.com/DinisRodrigues1" style={{ textDecoration: 'none' }}>Dinis</a> Rodrigues<br/>
+                        João <a href="http://pantaleao.solutions" style={{ textDecoration: 'none' }}>Pantaleão</a>
+                    </Col>
                 </Row>
-                <Row>
-                    <Col>Projeto realizado no âmbito da UC Laboratório Multimédia 5</Col>    
-                </Row>
-                <Row><Col>Universidade de Aveiro - 2018</Col></Row>
             </Container>
         </div>
     )

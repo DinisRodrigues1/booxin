@@ -50,7 +50,7 @@ class Results extends Component {
 
         return(
             <Fragment> 
-                <h2>Resultados:</h2>
+                <h3 className="align-left">Resultados:</h3><hr/>
                     {this.props.search ? 
                       itemsShown.map((title) => (
                         <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">

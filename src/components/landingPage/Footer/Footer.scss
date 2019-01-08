@@ -6,8 +6,24 @@
 }
 
 .col {
-    padding-top: 5vh;
+    padding: 5vh 0 5vh 0;
     color: white;
     max-width: 100%;
-    text-align: left
+    text-align: center
+}
+
+$link: #808080;
+$visited: #A9A9A9;
+$hover: #C0C0C0;
+
+a:link {
+    color: $link
+}
+
+a:visited {
+    color: $visited
+}
+
+a:hover {
+    color: $hover;
 }
