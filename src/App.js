@@ -11,6 +11,7 @@ import Register from './components/auth/Register'
 import UserPage from './components/user/UserPage'
 import PwChange from './components/auth/PwChange'
 import Library from './components/user/library'
+import Acervo from './components/user/acervo'
 import { connect } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -31,6 +32,7 @@ class App extends Component {
             <Route path="/painel" component={UserPage} />
             <Route path="/passwordreset" component={PwChange} />
             <Route path="/biblioteca" component={Library} />
+            <Route path="/acervo" component={Acervo} />
             <Footer/>
           </div>
         </Switch>

@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import './library.scss'
+import './acervo.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
 import { Link, Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { getUserBooks } from './libraryActions'
+import { getAllUserBooks } from '../library/libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import _ from 'lodash'
@@ -15,7 +15,7 @@ const axios = require('axios')
 const itemsPerPage = 5
 
 
-class Library extends Component {
+class Acervo extends Component {
     constructor (props) {
         super(props)
         this.state = {
@@ -24,11 +24,6 @@ class Library extends Component {
         }
 
     }
-
-    handleDelete = (e) => {
-        this.props.deleteFromLibrary(e.target.id)
-    }
-
     handlePageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`)
         this.setState({
@@ -40,21 +35,13 @@ class Library extends Component {
         
         const { auth } = this.props;
         const { books } = this.state;
-        const profile = this.props.profile
-        let nameOf = ''
-        let inform = ''
-        console.log(books)
-        if (!auth.uid) return <Redirect to="/" />
-        let arr = this.props.books
-        console.log(auth.displayName)
+        
         
 
 
         return(
                <Fragment> 
-               {profile.userName ?
-                <h3 className="align-left">Livros do {profile.userName}: <hr/></h3> : <h3 className="align-left">Livros do {auth.displayName}: <hr/></h3>}
-                
+                <h3 className="align-left">Livros dos utilizadores: <hr/></h3>
                    {books ? 
                      books.map((book) => (
                        <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">
@@ -72,15 +59,15 @@ class Library extends Component {
                                </div>
                                <div className="flex-column flex-grow-1">
                                 <Button 
-                                    color="danger" 
+                                    color="success" 
                                     id={book.isbn}
-                                    onClick={this.handleDelete} 
+                                    onClick={this.deleteBook} 
                                     className="button">
-                                        Apagar
+                                        Trocar
                                 </Button><br/>
                             </div>
                         </Media>
-                        )) : `Erro de pesquisa`}
+                        )) : <div><p>Ainda não adicionaste nenhum livro à tua biblioteca.</p></div>}
                             <Pagination
                                activePage={this.state.activePage}
                                itemsCountPerPage={10}
@@ -94,30 +81,15 @@ class Library extends Component {
                      
 
         componentDidMount() {
-            this.props.getUserBooks();
+            this.props.getAllUserBooks();
         }
     
         componentDidUpdate(prevProps){
             if(prevProps.books !== this.props.books){
                 console.log("BOOKS",  this.props.books);
 
-                const { auth } = this.props;
-                const profile = this.props.profile
-                let nameOf = ''
-                const filter = this.props.books && this.props.books.filter((book) =>{
-                    if (auth.displayName != null) {
-                        nameOf = auth.displayName
-                        return book.displayName == nameOf
-                    }
-                    else {
-                        nameOf = profile.userName
-                        return book.user == nameOf
-            
-                    }
-                    
-                
-                })
-                filter.forEach((book)=>{
+               
+                this.props.books.forEach((book)=>{
                     
                     this.getInfo(book.book_isbn)
 
@@ -164,7 +136,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserBooks: () => dispatch(getUserBooks())
+        getAllUserBooks: () => dispatch(getAllUserBooks())
     }
 }
 
@@ -173,4 +145,4 @@ export default compose(connect(mapStateToProps, mapDispatchToProps),
 firestoreConnect([
     { collection: 'users',
       collection: 'books' }
-]))(Library)
+]))(Acervo)

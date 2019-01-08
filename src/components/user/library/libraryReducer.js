@@ -1,7 +1,6 @@
 const addToLibraryReducer = (state, action) => {
     switch(action.type) {
         case 'ADD_TO_LIBRARY_SUCCESS':
-        console.log('added')
         return {
             state
         }    
@@ -11,10 +10,13 @@ const addToLibraryReducer = (state, action) => {
             state
         } 
         case 'USER_DATA_SUCCESS':
-        console.log('wow')
         return {
             state
         } 
+        case 'ALL_USER_DATA_SUCCESS':
+        return {
+            state
+        }
         default: 
             return state
     }

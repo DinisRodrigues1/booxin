@@ -20,7 +20,7 @@ export const addToLibrary = (book) => {
         } else {
         firestore.collection('books').add({
             book_isbn: book,
-            displayName: displayName, //CHECK IF CORRECT
+            displayName: displayName,
             user_id: authorId,
             date: new Date()
         }).then(() => {
@@ -60,3 +60,17 @@ export const getUserBooks = () => {
           
     }
 }
+
+export const getAllUserBooks = () => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+
+        const firebase = getFirebase()
+        const firestore = getFirestore()
+        const profile = getState().firebase.profile.userName
+      
+            dispatch({ type: 'ALL_USER_DATA_SUCCESS' })
+        }
+        
+          
+    }
+
