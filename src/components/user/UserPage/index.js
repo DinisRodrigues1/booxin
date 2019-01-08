@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Button, col } from 'reactstrap'
+import {changeEmail} from '../library/libraryActions'
 import './UserPage.scss'
 
 
@@ -18,6 +19,9 @@ class UserPage extends Component {
       // An error happened.
       });
     */
+    changeEmailUser = () => {
+        this.props.changeEmail()
+    }
 
     render(){
         const { auth } = this.props
@@ -27,7 +31,7 @@ class UserPage extends Component {
                     <h1 className="margin">Painel de controlo</h1>
                     <div className="margin">
                         Alterar o email<br/>
-                        <Button>Alterar</Button>
+                        <Button onClick={this.changeEmail}>Alterar</Button>
                     </div>
                     <div className="margin">
                         Alterar a password<br/>
@@ -43,5 +47,10 @@ const mapStateToProps = (state) => {
       auth: state.firebase.auth
     }
   }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeEmail: () => dispatch(changeEmail())
+    }
+}  
 
-export default connect(mapStateToProps)(UserPage)
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage)

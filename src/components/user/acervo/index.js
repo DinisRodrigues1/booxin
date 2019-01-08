@@ -5,7 +5,7 @@ import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
 import { Link, Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { getAllUserBooks } from '../library/libraryActions'
+import { getAllUserBooks, getUserInfo } from '../library/libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import _ from 'lodash'
@@ -32,8 +32,9 @@ class Acervo extends Component {
         });
     }
 
-    handleTrade(){
+    handleTrade =(e) =>{
         console.log('trade')
+        this.props.getUserInfo(e.target.id);
     }
 
     render(){
@@ -58,13 +59,15 @@ class Acervo extends Component {
                                </Media> 
                                </div>
                                <div className="flex-column flex-grow-1">
+                               <Link to="/troca">
                                 <Button 
                                     color="success" 
                                     id={book.isbn}
-                                    onClick={this.handleTrade.bind(this)} 
+                                    onClick={this.handleTrade} 
                                     className="button">
                                         Trocar
-                                </Button><br/>
+                                </Button>
+                                </Link><br/>
                             </div>
                         </Media>
                         )) : <div><p>Ainda não adicionaste nenhum livro à tua biblioteca.</p></div>}
@@ -110,9 +113,9 @@ class Acervo extends Component {
                     name: response.data['ISBN:'+info].details.title,
                     cover: response.data['ISBN:'+info].details.covers,
                     publishers: response.data['ISBN:'+info].details.publishers,
-                    isbn: response.data['ISBN:'+info].details.isbn_10
+                    isbn: response.data['ISBN:'+info].details.isbn_10[0]
                 }
-
+                console.log(book.isbn, "here is book")
                 books.push(book);
                 this.setState({books:books});
             }).catch((err) =>{
@@ -135,7 +138,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllUserBooks: () => dispatch(getAllUserBooks())
+        getAllUserBooks: () => dispatch(getAllUserBooks()),
+        getUserInfo: () => dispatch(getUserInfo())
     }
 }
 

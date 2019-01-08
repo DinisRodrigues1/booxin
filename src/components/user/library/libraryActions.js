@@ -6,7 +6,7 @@ export const addToLibrary = (book) => {
         const authorId = getState().firebase.auth.uid
         const displayName = getState().firebase.auth.displayName
 
-        if (profile != undefined) {
+        if (profile !== undefined) {
         firestore.collection('books').add({
             book_isbn: book,
             user: profile,
@@ -101,5 +101,34 @@ export const deleteFromLibrary = (id) => {
     });
         
 }}
+export const getUserInfo = (id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        
+        const firestore = getFirestore()
+        const firebase = getFirebase()
+        const db = firebase.firestore()
+        console.log(id)
+
+        db.collection("books").get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.data().book_isbn + "=>" + id, firestore._.authUid + "=>" + doc.data().user_id)
+        if (doc.data().book_isbn == id && firestore._.authUid == doc.data().user_id) {
+                const user = firestore._.authUid.then(()=> {
+                dispatch({ type: 'USER_FOUND' })
+                })
+            .catch((error) => {
+                console.log("Error", error)
+            })
+        }
+        else{console.log("nada")}
+        });
+});
+    
+}}
+
+export const changeEmail = () => {
+    
+}
 
 // APAGA MAS PRECISA DE ATUALIZAR A PÁGINA

@@ -9,9 +9,9 @@ class Trade extends Component {
             books:[]
         }
     }
-
+    
     render(){
-        const { books } = this.state;
+        const {auth, books, profile } = this.props
         return(
             <Fragment>
                 <h1>Troca</h1>

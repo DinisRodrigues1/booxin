@@ -25,6 +25,10 @@ const libraryReducer = (state = initState, action) => {
         return{
             state
         }
+        case 'USER_FOUND':
+        return{
+            state
+        }
         default: 
             return state
     }
