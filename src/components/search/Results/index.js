@@ -52,11 +52,7 @@ class Results extends Component {
 
         return(
             <Fragment> 
-<<<<<<< HEAD
                 <h3 className="align-left">Resultados:</h3><hr/>
-=======
-                <h2>Results:</h2>
->>>>>>> 88ce872d7b7b7a98b10278f1b17ebd8c60f9931b
                     {this.props.search ? 
                       itemsShown.map((title) => (
                         <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">

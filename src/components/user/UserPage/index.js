@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { Button, col } from 'reactstrap'
+import './UserPage.scss'
 
 
 class UserPage extends Component {
@@ -21,11 +23,18 @@ class UserPage extends Component {
         const { auth } = this.props
         if (!auth.uid) return <Redirect to="/login" />
         return(
-            <div>
-                <p>User info</p>
-            </div>
+            <Fragment>
+                    <h1 className="margin">Painel de controlo</h1>
+                    <div className="margin">
+                        Alterar o email<br/>
+                        <Button>Alterar</Button>
+                    </div>
+                    <div className="margin">
+                        Alterar a password<br/>
+                    <Button>Alterar</Button>
+                    </div>
+            </Fragment>
         )
-
     }
 }
 const mapStateToProps = (state) => {
