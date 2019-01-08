@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import './acervo.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
-import { Pagination as Page } from "reactstrap"
-import { Link, Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
 import { getAllUserBooks } from '../library/libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -11,8 +9,6 @@ import { compose } from 'redux'
 import _ from 'lodash'
 
 const axios = require('axios')
-
-const itemsPerPage = 5
 
 
 class Acervo extends Component {
@@ -37,8 +33,7 @@ class Acervo extends Component {
     }
 
     render(){
-        const { books } = this.state;
-        
+        const { books } = this.state
         return(
                <Fragment> 
                 <h3 className="align-left">Livros dos utilizadores: <hr/></h3>
@@ -77,52 +72,43 @@ class Acervo extends Component {
                                onClick={() => {window.scrollTop()}}
                                className="pagination"/>
              </Fragment>
-        )}
+        )
+    }
                      
 
-        componentDidMount() {
-            this.props.getAllUserBooks();
+    componentDidMount() {
+        this.props.getAllUserBooks();
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.books !== this.props.books){
+            this.props.books.forEach((book)=>{
+                this.getInfo(book.book_isbn)
+            });
         }
-    
-        componentDidUpdate(prevProps){
-            if(prevProps.books !== this.props.books){
-                console.log("BOOKS",  this.props.books);
+    }
 
-               
-                this.props.books.forEach((book)=>{
-                    
-                    this.getInfo(book.book_isbn)
-
-                });
-
+    getInfo(info) {
+        axios.get(`http://openlibrary.org/api/books?bibkeys=ISBN:${info}&jscmd=details&format=json`, {
+        })
+        .then((response) => {
+            let books = _.cloneDeep(this.state.books);
+            let book ={
+                author: response.data['ISBN:'+info].details.authors[0].name,
+                name: response.data['ISBN:'+info].details.title,
+                cover: response.data['ISBN:'+info].details.covers,
+                publishers: response.data['ISBN:'+info].details.publishers,
+                isbn: response.data['ISBN:'+info].details.isbn_10
             }
-    
-        }
 
-
-        getInfo(info) {
-            axios.get(`http://openlibrary.org/api/books?bibkeys=ISBN:${info}&jscmd=details&format=json`, {
-    
-            }).then((response) => {
-                let books = _.cloneDeep(this.state.books);
-                let book ={
-                    author: response.data['ISBN:'+info].details.authors[0].name,
-                    name: response.data['ISBN:'+info].details.title,
-                    cover: response.data['ISBN:'+info].details.covers,
-                    publishers: response.data['ISBN:'+info].details.publishers,
-                    isbn: response.data['ISBN:'+info].details.isbn_10
-                }
-
-                books.push(book);
-                this.setState({books:books});
-            }).catch((err) =>{
-                  console.log(err)
-            }).then(()=>{
-                console.log('here')
-            })
-        }
-    
-        
+            books.push(book);
+            this.setState({books:books});
+        }).catch((err) =>{
+                console.log(err)
+        }).then(()=>{
+            console.log('here')
+        })
+    }
 }
 
 const mapStateToProps = (state) => {

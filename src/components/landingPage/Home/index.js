@@ -11,10 +11,6 @@ class Home extends Component{
                 <div className="background">
                     <Search className="search" history={this.props.history}/>
                 </div>
-                {/* <img 
-                    src={books} 
-                    className="imgStyle"
-                    alt="A pile of books" /> */}
                 <Container className="marginTB">
                 <Row>
                     <Col xs="6" className="justified">

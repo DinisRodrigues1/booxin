@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react'
 import './library.scss'
 import { connect } from 'react-redux'
 import Pagination from "react-js-pagination"
-import { Pagination as Page } from "reactstrap"
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
 import { getUserBooks, deleteFromLibrary } from './libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -12,9 +11,6 @@ import _ from 'lodash'
 
 const axios = require('axios')
 
-const itemsPerPage = 5
-
-
 class Library extends Component {
     constructor (props) {
         super(props)
@@ -22,7 +18,6 @@ class Library extends Component {
             activePage: 1,
             books:[]
         }
-
     }
 
     handleDelete = (e) => {
@@ -41,12 +36,7 @@ class Library extends Component {
         const { auth } = this.props;
         const { books } = this.state;
         const profile = this.props.profile
-        let nameOf = ''
-        let inform = ''
-        console.log(books)
         if (!auth.uid) return <Redirect to="/" />
-        let arr = this.props.books
-        console.log(auth.displayName)
         
 
 
@@ -90,8 +80,7 @@ class Library extends Component {
                                onClick={() => {window.scrollTop()}}
                                className="pagination"/>
              </Fragment>
-        )}
-                     
+        )}  
 
         componentDidMount() {
             this.props.getUserBooks();
@@ -112,15 +101,10 @@ class Library extends Component {
                     else {
                         nameOf = profile.userName
                         return book.user == nameOf
-            
                     }
-                    
-                
                 })
                 filter.forEach((book)=>{
-                    
                     this.getInfo(book.book_isbn)
-
                 });
 
             }

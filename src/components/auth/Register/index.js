@@ -26,7 +26,6 @@ class Register extends Component {
         if (auth.uid) return <Redirect to='/' />
         return(
             <Fragment>
-               
                 <Col sm="12" md={{ size: 6, offset: 3 }}><Jumbotron className="container my-5">
                 <h1 className="text-left">Registo:</h1>
                 <hr className="my-2" />
@@ -51,8 +50,6 @@ class Register extends Component {
                 </Form>   
                 </div> 
                 </Jumbotron></Col>
-
-                
             </Fragment>
         )
     }
