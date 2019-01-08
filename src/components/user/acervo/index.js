@@ -24,11 +24,16 @@ class Acervo extends Component {
         }
 
     }
+
     handlePageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`)
         this.setState({
             activePage: pageNumber
         });
+    }
+
+    handleTrade(){
+        console.log('trade')
     }
 
     render(){
@@ -56,7 +61,7 @@ class Acervo extends Component {
                                 <Button 
                                     color="success" 
                                     id={book.isbn}
-                                    onClick={this.deleteBook} 
+                                    onClick={this.handleTrade.bind(this)} 
                                     className="button">
                                         Trocar
                                 </Button><br/>
@@ -121,7 +126,6 @@ class Acervo extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
         books: state.firestore.ordered.books,

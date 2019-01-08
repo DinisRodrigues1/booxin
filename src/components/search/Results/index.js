@@ -57,9 +57,9 @@ class Results extends Component {
                       itemsShown.map((title) => (
                         <Media className="d-flex p-2 mt-1 flex-row flex-wrap justify-content-around align-items-center">
                             <div className="flex-column flex-grow-1">
-                                <Media left middle href="" className="cover">
+                                <Media left middle href="" >
                                 {title.isbn[0] ? 
-                                    <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt={title.title} className="size"/>
+                                    <Media object src={`http://covers.openlibrary.org/b/isbn/${title.isbn[0]}-M.jpg`} alt={title.title} className="cover"/>
                                     : title.isbn[1]}
                                 </Media>
                             </div>
