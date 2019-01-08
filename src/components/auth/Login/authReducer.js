@@ -59,19 +59,18 @@ const authReducer = (state = initState, action) => {
             authError: action.error.message
         }
         case 'PW_CHANGE_SUCCESS':
-        console.log('SUCESS BOIII')
         return {
             ...state,
             authError: null
         }
         case 'PW_CHANGE_ERROR':
-        console.log('FAK')
         return {
             ...state,
             authError: action.error.message
         }
         default: 
             return state
+    
     }
     
 }
