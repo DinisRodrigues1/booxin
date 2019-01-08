@@ -74,3 +74,30 @@ export const getAllUserBooks = () => {
           
     }
 
+export const deleteFromLibrary = (id) => {
+        return (dispatch, getState, { getFirebase, getFirestore }) => {
+            
+            const firestore = getFirestore()
+            const firebase = getFirebase()
+            const db = firebase.firestore()
+            console.log(id)
+           
+            db.collection("books").get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data(), doc.data().book_isbn);
+            if (doc.data().book_isbn == id && firestore._.authUid == doc.data().user_id) {
+                console.log('hghgfgdfdfss')
+                db.collection("books").doc(doc.id).delete().then(() => {
+                    console.log("Document deleted!")
+                    dispatch({ type: 'DELETE_SUCCESS' })
+                }).catch((error) => {
+                    console.log("Error", error)
+                })
+            }
+            });
+    });
+        
+}}
+
+// APAGA MAS PRECISA DE ATUALIZAR A PÁGINA

@@ -5,7 +5,7 @@ import Pagination from "react-js-pagination"
 import { Pagination as Page } from "reactstrap"
 import { Link, Redirect } from 'react-router-dom'
 import { Media, Button } from 'reactstrap'
-import { getUserBooks } from './libraryActions'
+import { getUserBooks, deleteFromLibrary } from './libraryActions'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import _ from 'lodash'
@@ -53,7 +53,7 @@ class Library extends Component {
         return(
                <Fragment> 
                {profile.userName ?
-                <h3 className="align-left">Livros do {profile.userName}: <hr/></h3> : <h3 className="align-left">Livros do {auth.displayName}: <hr/></h3>}
+                <h3 className="align-left">Livros de {profile.userName}: <hr/></h3> : <h3 className="align-left">Livros de {auth.displayName}: <hr/></h3>}
                 
                    {books ? 
                      books.map((book) => (
@@ -164,7 +164,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserBooks: () => dispatch(getUserBooks())
+        getUserBooks: () => dispatch(getUserBooks()),
+        deleteFromLibrary: (id) => dispatch(deleteFromLibrary(id))
     }
 }
 

@@ -32,13 +32,8 @@ class Acervo extends Component {
     }
 
     render(){
-        
-        const { auth } = this.props;
         const { books } = this.state;
         
-        
-
-
         return(
                <Fragment> 
                 <h3 className="align-left">Livros dos utilizadores: <hr/></h3>

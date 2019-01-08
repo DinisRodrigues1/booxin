@@ -1,4 +1,7 @@
-const addToLibraryReducer = (state, action) => {
+const initState = {
+    authError: null
+}
+const libraryReducer = (state = initState, action) => {
     switch(action.type) {
         case 'ADD_TO_LIBRARY_SUCCESS':
         return {
@@ -17,7 +20,13 @@ const addToLibraryReducer = (state, action) => {
         return {
             state
         }
+        case 'DELETE_SUCCESS':
+        console.log("HERE I AM AGAIN ON MY OWN")
+        return{
+            state
+        }
         default: 
             return state
     }
 }
+export default libraryReducer
