@@ -1,0 +1,53 @@
+.wrapper {
+    display: flex;
+    max-width: 80%;
+}
+
+.box {
+    min-width: 20vw;
+    min-height: 10vh;
+}
+
+.box-info {
+    min-width: 50vw;
+    min-height: 10vh;
+}
+
+.cover{
+    display: block;
+    justify-content: center;
+    max-width: 120px;
+    max-height: 178px;
+}
+
+.info {
+    justify-content: center
+}
+
+.align {
+    justify-content: center;
+    margin: 5px
+}
+
+.button {
+    margin: 5px
+}
+
+.pagination {
+    display: inline-block;
+    margin-top: 10vh;
+    justify-content: center;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.align-left {
+    display: block;
+    text-align: left;
+    margin: 2vw;
+}
